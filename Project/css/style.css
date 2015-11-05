@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+.titleArea {
+	width: 90%;
+	left: 5%;
+	position: relative;
+	height: 100px;
+
+	font-family: 'Lato', Calibri, Arial;
+	font-weight: 700;
+	color: #000;
+}
+
+.title{
+	font-size: 20px;
+	text-align: center;
+}
+
+.sub_title {
+	font-weight: 300;
+	font-size: 13px;
+}
+
+.canvas {
+	width: 90%;
+	left: 5%;
+	height: 600px;
+	position: relative;
+	background: #999 !important;
+}
+
+footer {
+	width: 90%;
+	left: 5%;
+
+	font-size: 12px;
+}
+
+
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: " ";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+@media screen and (max-width: 46.0625em) {
+	
+}
+
+@media screen and (max-width: 25em) {
+	
+}
