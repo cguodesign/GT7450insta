@@ -12,49 +12,54 @@
 }
 
 .row{
+	display: table;
 	width: 90%;
 	position: inherit;
 	padding: 20px;
 }
 
 .col-12 {
+	display: table-cell;
 	width: 100%;
 }
 
 .col-10 {
 	width: 83.3%;
+	display: table-cell;
 }
 
 .col-2{
 	width: 16.7%;
 	left: 83.3%;
+	display: table-cell;
 }
 
 .col-6{
 	width: 50%;
 	left: 50%;
+	display: table-cell;
 }
 
 .col-8{
 	width: 66.6%;
-	position: fixed;
+	display: table-cell;
 }
 
 .col-4{
 	width: 33.4%;
 	left: 66.6%;
-	position: fixed;
+	display: table-cell;
 }
 
 .col-3{
 	width: 25%;
 	left: 75%;
-	position: fixed;
+	display: table-cell;
 }
 
 .col-9{
 	width: 75%;
-	position: fixed;
+	display: table-cell;
 }
 
 .title{
@@ -73,6 +78,27 @@
 	height: 600px;
 	position: relative;
 	background: #999 !important;
+}
+
+/* Here starts the css for inner part */
+#games{
+	display: table;
+	position: absolute;
+	width: 210px;
+}
+
+#home_area{
+	display: table-cell;
+}
+
+#away_area{
+	display: table-cell;
+}
+
+.game_scoreboard {
+	height: 30px;
+	position: absolute;
+	border: 1px solid #000000;
 }
 
 footer {

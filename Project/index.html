@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Instagram - before, during and after for football games | CS 7450 @ GT</title>
     <script src="lib/d3.js"></script>
-    <script src="js/instavis.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
     <!-- support file for side bar -->
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/icons.css" />
     <link rel="stylesheet" type="text/css" href="css/component.css" />
     <script src="js/modernizr.custom.js"></script>
+
+    <!-- support file for google's material design lite -->
+    <link rel="stylesheet" href="mdl/material.min.css">
+    <script src="mdl/material.min.js"></script>
+    <!--
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+    -->
+
   </head>
   <body>
     <!-- Side bar menu -->
@@ -45,6 +51,16 @@
                <div class="row">
                   <div class = "col-9">
                     <h4>Drawing Area</h4>
+                    <div id = "brushArea">
+                      <div id="games"> 
+                      <!-- all the 14 games, classified by home team's name without capital -->
+                        <div id="home_area"></div>
+                        <div id="away_area"></div>
+                      </div>
+                    </div>
+                    <div id = "shiftableTimeline">
+                      
+                    </div>
                   </div>
                   <div class = "col-3">
                     <h4>Sidebar</h4>
@@ -62,4 +78,5 @@
   </footer>
   <script src="js/classie.js"></script>
   <script src="js/sidebarEffects.js"></script>
+  <script src="js/instavis.js"></script>
 </html>
