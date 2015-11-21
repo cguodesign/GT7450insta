@@ -15,7 +15,8 @@ function showsubmenu()
 {
  if ( document.all.map.style.display == "none" ) 
  {
-  document.all.map.style.display = "" ;
+	document.all.map.style.display = "";
+	//document.all.map.style = #map;
  }
  else
  {
@@ -26,7 +27,7 @@ function showsubmenu()
 
 <style>
   body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
+  #map { position:absolute; top:0; bottom:0; width:100%; z-index:-10;}
 </style>
 </head>
 
@@ -35,8 +36,8 @@ function showsubmenu()
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
 
-<a href="#" click=true onClick="showsubmenu()"> BackgroundMap</a> 
-<div id='map' style="display:none"></div>
+<a href="#" click=true onClick="showsubmenu()" > BackgroundMap</a> 
+<div id='map' ></div>
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoid2F3amNoaW5hd2N0IiwiYSI6ImNpZ3Ezeno1aTAxdWJ0cGtuaWZrNmM3ZTcifQ.M0MdppZcEwKBx4kpAQLk3w';
