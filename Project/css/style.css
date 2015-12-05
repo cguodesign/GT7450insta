@@ -131,16 +131,16 @@
  .leftcontent {
     position: absolute;
     left:0%;
-    width:21%;
+    width:13%;
     top:0px;
     font-family: roboto;
-    background-color: red;P
+    background-color: #fff;
   }
 
  .centercontent {
     position: absolute;
-    left:21%;
-    width:55%;
+    left:13%;
+    width:63%;
     top:0px;
     font-family: roboto;
     background-color: yellow;

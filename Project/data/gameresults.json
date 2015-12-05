@@ -13,6 +13,10 @@
     "Time_Kickoff_ET": "8:25 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.16",
+    "Api_User_Ending1" : 1444968000,
+    "Api_Starting_Time": 1444968000,
+    "Api_Ending_Time": 1445054340,
+    "Api_User_Starting2": 1445054340,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -29,6 +33,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445194800,
+    "Api_Starting_Time": 1445194800,
+    "Api_Ending_Time": 1445281200,
+    "Api_User_Starting2": 1445281200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -45,6 +53,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -61,6 +73,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -77,6 +93,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -93,6 +113,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -109,6 +133,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -125,6 +153,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -141,6 +173,10 @@
     "Time_Kickoff_ET": "1:00 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -157,6 +193,10 @@
     "Time_Kickoff_ET": "4:05 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -168,11 +208,15 @@
     "Score_home": "25",
     "Score_away":"20",
     "Location": "Levi's Stadium",
-    "Location's City": "\bSanta Clara",
+    "Location's City": "Santa Clara",
     "Location_ID": 239586494,
     "Time_Kickoff_ET": "4:25 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -189,6 +233,10 @@
     "Time_Kickoff_ET": "4:25 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -205,6 +253,10 @@
     "Time_Kickoff_ET": "8:30 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.18",
+    "Api_User_Ending1" : 1445140800,
+    "Api_Starting_Time": 1445140800,
+    "Api_Ending_Time": 1445227200,
+    "Api_User_Starting2": 1445227200,
     "Logo": "../images/logos/logo_"
   },
   {
@@ -221,6 +273,10 @@
     "Time_Kickoff_ET": "8:30 PM",
     "Time_Ending_ET": 0,
     "Date": "Oct.19",
+    "Api_User_Ending1" : 1445281200,
+    "Api_Starting_Time": 1445281200,
+    "Api_Ending_Time": 1445367600,
+    "Api_User_Starting2": 1445367600,
     "Logo": "../images/logos/logo_"
   }
 ]
