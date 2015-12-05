@@ -1,17 +1,19 @@
 <html>
 <head>
+	<title>Map Example</title>
 
-<title>Map Example</title>
+	<meta charset=utf-8 />
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
 
-<meta charset=utf-8 />
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+	<script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
 
-<script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
 
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
+	<script type="text/javascript" src="js/nouislider.min.js"></script>
+	<link rel="stylesheet" href="css/nouislider.min.css" type="text/css">
 
 <script language="javascript">
 function showsubmenu()
@@ -28,61 +30,28 @@ function showsubmenu()
 }
 </script>
 
-	<!-- bin/jquery.slider.min.css -->
-	<link rel="stylesheet" href="css/jslider.css" type="text/css">
-	<link rel="stylesheet" href="css/jslider.blue.css" type="text/css">
-	<link rel="stylesheet" href="css/jslider.plastic.css" type="text/css">
-	<link rel="stylesheet" href="css/jslider.round.css" type="text/css">
-	<link rel="stylesheet" href="css/jslider.round.plastic.css" type="text/css">
-  <!-- end -->
 
-	<script type="text/javascript" src="js/mySlider/jquery-1.7.1.js"></script>
-	
-	<!-- bin/jquery.slider.min.js -->
-	<script type="text/javascript" src="js/mySlider/jshashtable-2.1_src.js"></script>
-	<script type="text/javascript" src="js/mySlider/jquery.numberformatter-1.2.3.js"></script>
-	<script type="text/javascript" src="js/mySlider/tmpl.js"></script>
-	<script type="text/javascript" src="js/mySlider/jquery.dependClass-0.1.js"></script>
-	<script type="text/javascript" src="js/mySlider/draggable-0.1.js"></script>
-	<script type="text/javascript" src="js/mySlider/jquery.slider.js"></script>
-  <!-- end -->
 
 <style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; z-index:0;} <!-- negative z may cause non-respond of map-->
+	body { margin:0; padding:0; }
+	#map { position:absolute; top:0; bottom:0; width:100%; z-index:0;} <!-- negative z may cause non-respond of map-->
+
 </style>
 
 </head>
-
 <body>
 
-<a href="#" click=true onClick="showsubmenu()" > ShowOrHide_Map</a> 
-<div> Any browser except Chrome!</div>
+	<a href="#" click=true onClick="showsubmenu()" > ShowOrHide_Map</a> 
+	<div> Any browser except Chrome!</div>
+	
+	<div id='map' style="height: 750px; width: 1000px; margin-left: 25px; margin-top: 75px;"; ></div>
 
-	<div style=" margin-left: 1050px; margin-top: 280px; width: 150px">  Followers Filter</div>
-    <div class="layout-slider" style=" margin-left: 1050px; margin-top: 10px; width: 175px; z-index: 10">
-      <input id="Slider1" type="slider" name="area" value="2;10" />
-    </div>	
-    <script type="text/javascript" charset="utf-8">
-      jQuery("#Slider1").slider({ from: 1, to: 300, heterogeneity: ['50/5', '75/15'], scale: [1, '|', 30, '|', 50, '|', 150, '|', 300], limits: false, step: 1, dimension: '', skin: "blue", callback: function( value ){ console.dir( this ); console.log( "value + %s", Slider1.value ) } });
-    </script>
+	<div id='my_filter1' style="width: 200px; margin-left: 1050px; margin-top: 300px;";></div>
 	
-	<div style=" margin-left: 1050px; margin-top: 50px; width: 150px">  Likes Filter </div>
-    <div class="layout-slider" style = " margin-left: 1050px; margin-top: 10px; width: 175px">
-      <input id="Slider2" type="slider" name="area" value="25;75" />
-    </div>
-    <script type="text/javascript" charset="utf-8">
-      jQuery("#Slider2").slider({ from: 0, to: 500, heterogeneity: ['50/100', '75/250'], scale: [0, '|', 50, '|', '100', '|', 250, '|', 500], limits: false, step: 1, dimension: '', skin: "round_plastic", callback: function( value ){ console.dir( this ); console.log( "value + %s", Slider2.value ) } });
-    </script>
+	<div id='my_filter2' style="width: 200px; margin-left: 1050px; margin-top: 100px;";></div>
 	
-	
-	
-	
-	
-
-<div id='map' style="height: 750px; width: 1000px; margin-left: 25px; margin-top: 75px;"; ></div>
-<script>
-L.mapbox.accessToken = 'pk.eyJ1Ijoid2F3amNoaW5hd2N0IiwiYSI6ImNpZ3Ezeno1aTAxdWJ0cGtuaWZrNmM3ZTcifQ.M0MdppZcEwKBx4kpAQLk3w';
+	<script>
+	L.mapbox.accessToken = 'pk.eyJ1Ijoid2F3amNoaW5hd2N0IiwiYSI6ImNpZ3Ezeno1aTAxdWJ0cGtuaWZrNmM3ZTcifQ.M0MdppZcEwKBx4kpAQLk3w';
     var map = L.mapbox.map('map', 'mapbox.streets', {
         center: [40.91557, -77.03198],
         zoom: 6
@@ -91,15 +60,54 @@ L.mapbox.accessToken = 'pk.eyJ1Ijoid2F3amNoaW5hd2N0IiwiYSI6ImNpZ3Ezeno1aTAxdWJ0c
     L.marker([38.9206, -77.0357]).bindLabel('Meridian Hill Park').addTo(map);
     L.marker([38.909776, -77.034097]).bindLabel('Sweetgreen').addTo(map);
     L.marker([38.917139, -77.031745]).bindLabel('Subway').addTo(map);
-    L.marker([38.915300, -77.031724]).bindLabel('Manny & Olga\'s Pizza').addTo(map);
-    L.marker([38.913388, -77.032351]).bindLabel('Crossfit DC').addTo(map);
-    L.marker([38.91371, -77.03590]).bindLabel('House of the Temple').addTo(map);
     L.marker([38.914722, -77.034414]).bindLabel('St James Church').addTo(map);
     L.marker([38.91680, -77.02889]).bindLabel('U Street Metro').addTo(map);
     L.marker([40.914271, -77.028293]).bindLabel('The Coffee Bar #1 Node').addTo(map);
 	
 	L.marker([43.91680, -77.02889]).bindPopup('U Street Metro  #1 Node').addTo(map);
+	
+	
+	var nonLinearSlider1 = document.getElementById('my_filter1');
+	noUiSlider.create(nonLinearSlider1, {
+		connect: true,
+		behaviour: 'tap',
+		start: [ 500, 4000 ],
+		range: {
+		// Starting at 500, step the value by 500,
+		// until 4000 is reached. From there, step by 1000.
+			'min': [ 0 ],
+			'10%': [ 500, 500 ],
+			'50%': [ 4000, 1000 ],
+			'max': [ 10000 ]
+		},
+		pips: {
+		mode: 'values',
+		values: [500, 8000],
+		density: 2
+		}
+	});
+	
+		var nonLinearSlider2 = document.getElementById('my_filter2');
+		noUiSlider.create(nonLinearSlider2, {
+		connect: true,
+		behaviour: 'tap',
+		start: [ 200, 2000 ],
+		range: {
+		// Starting at 500, step the value by 500,
+		// until 4000 is reached. From there, step by 1000.
+			'min': [ 0 ],
+			'10%': [ 200, 100 ],
+			'50%': [ 1500, 250 ],
+			'max': [ 3000 ]
+		},
+		pips: {
+		mode: 'values',
+		values: [200, 2000],
+		density: 4
+		}
+	});
+	
 </script>
-
+	
 </body>
 </html>
