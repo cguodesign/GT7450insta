@@ -1,11 +1,11 @@
 d3.json("../data/gameresults.json", function(error, data){
     //use data here
-    var gameresults = d3.select("#results").append("svg")
-    	.attr("width", 200)
+    var gameresultsHome = d3.select("#home_area").append("svg")
+    	.attr("width", 100)
     	.attr("height", 800)
     	.attr('id', 'games_svg')
 
-    gameresults.selectAll("rect")
+    gameresultsHome.selectAll("rect")
     	.data(data)
     	.enter()
     		.append("rect")
@@ -18,11 +18,11 @@ d3.json("../data/gameresults.json", function(error, data){
     			return (d.Number -1)*50 ;
     		})
     		.attr('x', '0')
-    		.attr('width', '200')
+    		.attr('width', '100')
     		.attr('height', '50')
-    		.attr('fill', 'rgba(255,255,255,1.0)');
+    		.attr('fill', 'rgba(255,255,255,0.1');
  
-    gameresults.selectAll("text") // Add the score of the home team
+    gameresultsHome.selectAll("text") // Add the score of the home team
     	.data(data)
     	.enter()
     		.append("text")
@@ -32,10 +32,10 @@ d3.json("../data/gameresults.json", function(error, data){
     		})
     		.attr('fill', 'black')
     		.text(function(d){
-    			return (d.Score_home + " : " + d.Score_away);
+    			return d.Score_home;
     		});
 
-    gameresults.selectAll("img")
+    gameresultsHome.selectAll("img")
         .data(data)
         .enter()
             .append("svg:image")
@@ -50,11 +50,46 @@ d3.json("../data/gameresults.json", function(error, data){
                 return (d.Logo + d.Home + ".gif");
             });
 
-    gameresults.selectAll("img")
+    var gameresultsAway = d3.select("#away_area").append("svg") // add the area to show the away team 
+    	.attr("width", 100)
+    	.attr("height", 800)
+    	.attr('id', 'games_svg')
+
+    gameresultsAway.selectAll("rect") // add the background for away team 
+    	.data(data)
+    	.enter()
+    		.append("rect")
+    		.attr('class', 'game_scoreboard')
+    		.attr('id', function(d){
+    			var gameid = "g_" + d.Home;
+    			return gameid;
+    		})
+    		.attr('y', function(d){
+    			return (d.Number -1)*50 ;
+    		})
+    		.attr('x', '0')
+    		.attr('width', '110')
+    		.attr('height', '50')
+    		.attr('fill', 'rgba(255,255,255,0.1');
+
+    gameresultsAway.selectAll("text") // add the score for away team 
+    	.data(data)
+    	.enter()
+    		.append("text")
+    		.attr('x', '10')
+    		.attr('y', function(d){
+    			return (d.Number - 1) * 50+ 30;
+    		})
+    		.attr('fill', 'black')
+    		.text(function(d){
+    			return d.Score_away;
+    		});
+
+    gameresultsAway.selectAll("img")
         .data(data)
         .enter()
             .append("svg:image")
-            .attr('x', '90')
+            .attr('x', '35')
             .attr('y', function(d){
                 return (d.Number - 1) * 50+ 10;
             })
@@ -63,20 +98,6 @@ d3.json("../data/gameresults.json", function(error, data){
             .attr('fill', 'black')
             .attr("xlink:href", function(d){
                 return (d.Logo + d.Away + ".gif");
-            });
-
-    gameresults.selectAll("div")
-        .data(data)
-        .enter()
-            .append("div")
-            .attr('class','dddtooltip')
-            .style('opacity', 1)
-            .attr('for', function(d){
-                var gameid = "g_" + d.Home;
-                return gameid;
-            })
-            .text(function(d){
-                return (d.Home + " vs " + d.Away)
             });
 });
 /*
