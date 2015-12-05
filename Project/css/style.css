@@ -69,7 +69,6 @@
 	color: #9b6954;
 	line-height: 0px;
 }
-
 .football {
 	font-size: 36px;
 	text-align: center;
@@ -110,15 +109,12 @@
 	position: absolute;
 	width: 210px;
 }
-
 #home_area{
 	display: table-cell;
 }
-
 #away_area{
 	display: table-cell;
 }
-
 .game_scoreboard {
 	height: 30px;
 	position: absolute;
@@ -163,8 +159,7 @@
 .data{
 	width: 100%;
 	text-align: center;
-	font-size: 100px;
-	font-weight: 600;
+	font-size: 12px;
 	padding-bottom: 30px;
 }
 
