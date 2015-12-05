@@ -1,14 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
 .titleArea {
-	width: 90%;
-	left: 5%;
+	width: 100%;
+	top: 40px;
 	position: relative;
-	height: 100px;
-
+	height: auto;
+	margin-bottom: 55px;
 	font-family: 'Lato', Calibri, Arial;
-	font-weight: 700;
-	color: #000;
 }
 
 .row{
@@ -62,26 +60,52 @@
 	display: table-cell;
 }
 
-.title{
-	font-size: 20px;
+/*.title {
+	font-size: 36px;
 	text-align: center;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	color: #9b6954;
+	line-height: 0px;
+}
+
+.football {
+	font-size: 36px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	color: #000;
+	line-height: 0px;
+}*/
+
+.instafootball {
+	display: block;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .sub_title {
 	font-weight: 300;
-	font-size: 13px;
+	font-size: 15px;
+	text-align: center;
+	margin: 0;
+	line-height: 60px;
+	color: #999;
+	font-style: italic;
 }
 
-.canvas {
-	width: 90%;
-	left: 5%;
-	height: 600px;
+/*.canvas {
+	width: 100%;
+	height: auto;
 	position: relative;
-	background: #999 !important;
-}
+	background: #f2f2f2 !important;
+}*/
 
 /* Here starts the css for inner part */
-#games{
+/*#games{
 	display: table;
 	position: absolute;
 	width: 210px;
@@ -99,14 +123,56 @@
 	height: 30px;
 	position: absolute;
 	border: 1px solid #000000;
+}*/
+
+.home-content{
+	height: 320px;
+	position: relative;
+	opacity: .8;
+	padding: 0;
 }
 
-footer {
-	width: 90%;
-	left: 5%;
+ .leftcontent {
+    position: absolute;
+    left:0%;
+    width:21%;
+    top:0px;
+    font-family: roboto;
+    background-color: red;P
+  }
 
-	font-size: 12px;
+ .centercontent {
+    position: absolute;
+    left:21%;
+    width:55%;
+    top:0px;
+    font-family: roboto;
+    background-color: yellow;
+  }
+
+
+.rightcontent {
+    position: absolute;
+    left:76%;
+    width:24%;
+    top:0px;
+    font-family: roboto;
+    background-color: green;
+  }
+
+.data{
+	width: 100%;
+	text-align: center;
+	font-size: 100px;
+	font-weight: 600;
+	padding-bottom: 30px;
 }
+
+.datatext{
+	font-size: 13px;
+	line-height: 1.3em;
+}
+
 
 
 .clearfix:before,
