@@ -78,6 +78,25 @@ d3.json("../data/gameresults.json", function(error, data){
             .text(function(d){
                 return (d.Home + " vs " + d.Away)
             });
+
+    var mainArea = d3.select("#maincontainer").append('svg')
+        .attr("width",800)
+        .attr("width",800)
+
+    mainArea.selectAll("line")
+        .data(data)
+        .enter()
+            .append('line')
+            .attr("x1", 5)
+            .attr("y1", function(d){
+                return (d.Number) * 50
+            })
+            .attr("x2", 795)
+            .attr("y2", function(d){
+                return (d.Number) * 50
+            })
+            .attr("stroke","blue")
+            .attr('stroke-width', 1);
 });
 /*
 $(document).ready(function () {

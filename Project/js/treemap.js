@@ -1,3 +1,9 @@
+var disabled = [];
+
+var margin = {top: 40, right: 10, bottom: 10, left: 10},
+    width = 300 - margin.left - margin.right,
+    height = 200 - margin.top - margin.bottom;
+
 var color = d3.scale.category20c();
 
 var treemap = d3.layout.treemap()
@@ -5,10 +11,12 @@ var treemap = d3.layout.treemap()
     .sticky(true)
     .value(function(d) { return d.size; });
 
-var div = d3.select("#filterbar").append("div")
+var treediv = d3.select("#filterbar").append("div")
     .style("position", "relative")
-    .style("width", "24%")
-    .style("height", 300)
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
 
 d3.json("http://7450_image_api.wuzizheng.com/user/1770019821.json", function(error, rawdata) {
     if (error) throw error;
@@ -32,8 +40,7 @@ d3.json("http://7450_image_api.wuzizheng.com/user/1770019821.json", function(err
     var previous_clicked_node = null;
     var previous_clicked_node_color = {};
 
-    var disabled = [];
-    var node = div.datum(filter_object).selectAll(".node")
+    var node = treediv.datum(filter_object).selectAll(".node")
         .data(treemap.nodes)
         .enter().append("div")
         .attr("class", "node")
@@ -72,6 +79,10 @@ d3.json("http://7450_image_api.wuzizheng.com/user/1770019821.json", function(err
     });
 });
 
+
+function get_disabled(){
+    return disabled;
+}
 function position() {
     this.style("left", function(d) { return d.x + "px"; })
         .style("top", function(d) { return d.y + "px"; })
