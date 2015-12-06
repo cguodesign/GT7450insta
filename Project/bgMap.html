@@ -14,6 +14,8 @@
 
 	<script type="text/javascript" src="js/nouislider.min.js"></script>
 	<link rel="stylesheet" href="css/nouislider.min.css" type="text/css">
+	
+	<script src="lib/d3.js"></script>
 
 <script language="javascript">
 function showsubmenu()
@@ -54,10 +56,9 @@ function showsubmenu()
 	<div style="margin-left: 1050px; margin-top: -50px;"> Likes!</div>
 	
 	<script>
-	var indexoffilter1 = -1;
-	var indexoffilter2 = -1;
-	var indexoffilter3 = -1;
+
 	
+	// this part is about map  and addLocation API
 	var testposX = 38;
 	var testposY = - 77;
 	
@@ -78,6 +79,16 @@ function showsubmenu()
 	function newLocation(posX, posY, intro){
 		L.marker([posX, posY]).bindLabel(intro).addTo(map);
 	}
+	
+	
+	
+	
+	//  --- this part is about sliders and their operations: add , replace , delete
+	
+	var indexoffilter1 = -1;
+	var indexoffilter2 = -1;
+	var indexoffilter3 = -1;
+	
 	
 	var nonLinearSlider1 = document.getElementById('my_filter1');
 	noUiSlider.create(nonLinearSlider1, {
@@ -280,7 +291,7 @@ function showsubmenu()
 		//	li.id=id;
 			li.appendChild(href_a);
 	}
-	
+
 </script>
 	
 </body>
