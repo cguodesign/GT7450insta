@@ -170,24 +170,26 @@ var margin = {top: 10, right: 20, bottom: 80, left: 100},
     width = 960 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
 
-/*var x = d3.scale.linear()
+var x = d3.scale.linear()
     .range([0, width])
     .domain([14449,14465]);
 
-var y = d3.scale.ordinal()
+/*var y = d3.scale.ordinal()
     .rangeRoundBands([0,height])
     .domain(["Central","East","South","West","Central1","East1","South1","West1"]);
 */
 
-var dotdrawing = d3.select("#maincontainer").append("svg")
-      .attr("width", 1000)
-      .attr("height", 50)
-      .attr('id', 'main_svg')
 
-var brush = d3.main_svg.brush()
+
+var brush = d3.svg.brush()
     .x(x)
     .on("brush", brushmove);
     //.on("brushed", brushed);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
 
 
 //var svg = d3.select("body").append("dotdrawing")
@@ -196,7 +198,18 @@ var brush = d3.main_svg.brush()
     //.attr("fill","pink")
     //.append("g");
     //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var dotdrawing = d3.select("#maincontainer").append("svg")
+      .attr("width", 1000)
+      .attr("height", 50)
+      .attr('id', 'main_svg')
 
+
+
+dotdrawing.append("g")
+    .attr("class", "x axis")
+    .attr("clip-path", "url(#clip)")
+    .attr("transform", "translate(" + margin.left + ","+ height+ ")")
+    .call(xAxis);
 
 
 
@@ -574,20 +587,15 @@ $(function() {
     var minv = d3.max([ui.values[0], 0]);
 
 
-
+    //x.domain([maxv-1, minv]);
     x.domain([minv, maxv-1]);
-    svg.transition().duration(750)
+    dotdrawing.transition().duration(750)
       .select(".x.axis").call(xAxis);
-    svg.transition().duration(750)
-      .selectAll(".point").attr("transform", transform);
+    dotdrawing.transition().duration(750)
+      .selectAll(".point").attr("transform", function transform(d) {return "translate(" + x(d.index) + "," + "0)";
   });
-function transform(d){
-
-  return "translate(" + x(d[xCat]) + "," + "0)";
-}
-
-
- }
+    
+    }
 
 
   });
