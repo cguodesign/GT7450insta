@@ -95,9 +95,7 @@ var x = d3.scale.linear()
     .range([0, width])
     .domain([14449,14465]);
 
-var y = d3.scale.ordinal()
-    .rangeRoundBands([0,height])
-    .domain(["Central","East","South","West","Central1","East1","South1","West1"]);
+
 
 
 
@@ -111,44 +109,32 @@ var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(11);
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    //.attr("fill","pink")
-    .append("g");
-    //.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var dotdrawing = d3.select("#maincontainer").append("svg")
+      .attr("width", 1000)
+      .attr("height", 1000)
+      .attr('id', 'main_svg')
 
 
-svg.append("rect")
+
+/*dotdrawing.append("rect")
     .attr("width", "87.5%")
     .attr("left", "5%")
     .attr("height", "600px")
     .attr("fill", "#999")
     .attr("transform", "translate(" + margin.left + ", 0)");
 
-svg.append("g")
+dotdrawing.append("g")
     .attr("class", "x axis")
     .attr("clip-path", "url(#clip)")
     .attr("transform", "translate(" + margin.left + ","+ height+ ")")
-    .call(xAxis);
-
-svg.append("g")
-    .attr("class", "y axis")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .call(yAxis);
+    .call(xAxis);*/
 
 
 
 
-var dotdrawing = d3.select("#maincontainer").append("svg")
-      .attr("width", 1000)
-      .attr("height", 1000)
-      .attr('id', 'main_svg')
+
+
 
 
 
@@ -378,7 +364,7 @@ d3.json("http://7450_image_api.wuzizheng.com/location/233268.json", function(err
 });
 
 points.on('mousedown', function(){
-  brush_elm = svg.select(".brush").node();
+  brush_elm = dotdrawing.select(".brush").node();
   new_click_event = new Event('mousedown');
   new_click_event.pageX = d3.event.pageX;
   new_click_event.clientX = d3.event.clientX;
@@ -397,10 +383,7 @@ function brushmove() {
 
 
 
-var x1 = d3.scale.linear()
-    .domain([1, 100])
-    .range([0, width])
-    .clamp(true);
+
 
 
 
@@ -423,18 +406,18 @@ $(function() {
     $( "#slider" ).slider({
     range: true,
     min: 0,
-    max: data.length-1,
-    values: [0,data.length-1],
+    max: 999,
+    values: [0,999],
     slide: function( event, ui ) {
-    var maxv = d3.min([ui.values[1], data.length]);
+    var maxv = d3.min([ui.values[1], 1000]);
     var minv = d3.max([ui.values[0], 0]);
 
 
     //x.domain([maxv-1, minv]);
     x.domain([minv, maxv-1]);
-    svg.transition().duration(750)
+    dotdrawing.transition().duration(750)
       .select(".x.axis").call(xAxis);
-    svg.transition().duration(750)
+    dotdrawing.transition().duration(750)
       .selectAll(".point").attr("transform", function transform(d) {return "translate(" + x(d.index) + "," + "0)";
   });
     
