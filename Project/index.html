@@ -21,6 +21,82 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
     -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+      <script>
+
+      function initialize() {
+        var customMapType = new google.maps.StyledMapType([
+      {
+        stylers: [
+          {hue: '#fbc02d'},
+          {visibility: 'simplified'},
+          {gamma: 1},
+          {weight: 1}
+        ]
+      },
+      {
+        elementType: 'labels',
+        stylers: [{visibility: 'off'}]
+      },
+      {
+        featureType: 'water',
+        stylers: [{color: '#a0c3ff'}]
+      }
+    ], {
+      name: 'Simplified View'
+  });
+  var customMapTypeId = 'custom_style';
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: {lat: 38.7550, lng: -97.3900},  // Atlanta.
+    mapTypeControlOptions: {
+      mapTypeIds: [customMapTypeId, google.maps.MapTypeId.ROADMAP],
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.TOP_RIGHT,
+    }
+  });
+
+  map.mapTypes.set(customMapTypeId, customMapType);
+  map.setMapTypeId(customMapTypeId);
+
+        $.getJSON('http://7450_image_api.wuzizheng.com/user/1770019821.json', function(resp){
+            resp.forEach(function(item, index){
+                var color = '#3367D6';
+                if (item.location != null) {
+                  var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(item.location.latitude, item.location.longitude),
+                    map: map,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 4,
+                        strokeColor: color,
+                        strokeOpacity: 0.35,
+                        strokeWeight: 8,
+                        fillColor: color,
+                        fillOpacity: 0.8,    
+                    },
+                  }); 
+                }
+                
+
+
+                
+
+            })
+        });
+
+        $('.close').on('click', function(e){
+                e.preventDefault();
+                $('.panel').hide();
+              });
+        
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+      
+    </script>
 
   </head>
   <body>
@@ -58,8 +134,8 @@
                     </div>
                 </div>
                  <div class="centercontent">
-                    <div class="data">
-                        <p>map</p>
+                    <div id="map">
+                        
                     </div>
                 </div>
                 <div class="rightcontent">
