@@ -78,7 +78,7 @@ d3.json("../data/gameresults.json", function(error, data){
             .text(function(d){
                 return (d.Home + " vs " + d.Away)
             });
-
+/*
     var mainArea = d3.select("#maincontainer").append('svg')
         .attr("width",800)
         .attr("width",800)
@@ -97,7 +97,9 @@ d3.json("../data/gameresults.json", function(error, data){
             })
             .attr("stroke","blue")
             .attr('stroke-width', 1);
+*/
 });
+
 /*
 $(document).ready(function () {
   //your code here
