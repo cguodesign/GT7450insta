@@ -135,6 +135,13 @@ dotdrawing.append("g")
 
 
 
+<<<<<<< HEAD
+var dotdrawing = d3.select("#center_panel").append("svg")
+      .attr("width", 1000)
+      .attr("height", 1000)
+      .attr('id', 'main_svg')
+=======
+>>>>>>> origin/Reframe_Index
 
 
 
@@ -197,7 +204,7 @@ d3.json("http://7450_image_api.wuzizheng.com/location/248861636.json", function(
 });
 
 //4
-d3.json("http://7450_image_api.wuzizheng.com/location/216590000.json", function(error, data){
+d3.json("http://7450_image_api.wuzizheng.com/location/219182853.json", function(error, data){
   points.data(data)
       .enter()
         .append('circle')
