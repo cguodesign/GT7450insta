@@ -19,13 +19,26 @@ var eventDropsChart = d3.chart.eventDrops()
   .hasBottomAxis(false)
   .hasTopAxis(true)
   .eventClick(function(el) {
-                    var url = d3.select(el);
-                    //alert(url);
-                    console.log( d3.select(el).data());
-                    var hashtag = el.parentNode.firstChild.innerHTML;
-                    var timestamp = d3.select(el).data()[0]
-                    document.getElementById('legend').innerHTML = 'A Tweet at [' + timestamp + '] with hashtag "' + hashtag + '"';
+
+                    var timestamp = d3.select(el).data()[0];
+                    var unixtime = Date.parse(timestamp)/1000;
+                    var location = el.parentNode.firstChild.__data__.name;
+                    for (var i in eventdrop_location) {
+                        if (eventdrop_location[i].name != location) {
+
+                        }
+                        else {
+                            for (var j in eventdrop_location[i]['dates']) {
+                                if (Date.parse(eventdrop_location[i]['dates'][j])/1000 == unixtime) {
+                                    console.log(eventdrop_location[i]['url'][j]);
+                                }
+                            }
+                        }
+                    }
+
+                    //document.getElementById('legend').innerHTML = 'A Tweet at [' + timestamp + '] with hashtag "' + hashtag + '"';
                 });
+
 
 /*
 var eventDropsChart_before = d3.chart.eventDrops()
@@ -94,7 +107,7 @@ var addGamesDots = function(d){
 var addGamesDots_user = function(e){
   for(ga = 0; ga < all_games.length; ga++) {
     var game_time_id = all_games[ga];
-    console.log(game_time_id + " : " + location_user_dict[game_time_id].length);
+    //console.log(game_time_id + " : " + location_user_dict[game_time_id].length);
     //for (u = 0; u < location_user_dict[game_time_id].length; u++){
       addGamesDots_new(game_time_id)
     };
