@@ -32,15 +32,17 @@
 			}
 			
 			
-			svg { border: 1px solid #dedede; }
-
-			.axis path, .axis line {
-			fill: none;
-			stroke: #000;
-			shape-rendering: crispEdges;
-			}
-
-			.area { fill: #4ca3bd; }
+		svg { border: 0px solid #dedede; }
+		.axis path,
+		.axis line {
+		fill: none;
+		stroke: #000;
+		shape-rendering: crispEdges;
+		}
+		.area {
+		fill: steelblue;
+		}
+		
             </style>
 
             <script>
@@ -165,7 +167,7 @@
         </div> 
 		
 		
-		<svg id="area" ></svg>
+		<svg id="areachart" ></svg>
 <path class="area" d="M0,214.28571428571428L168.33333333333331,
 171.42857142857142L336.66666666666663,0L505,128.57142857142858L505,
 300L336.66666666666663,300L168.33333333333331,300L0,300Z"></path>
@@ -182,7 +184,7 @@
 				};
 				about.onmouseout = function(){
 					console.log("hidden");
-					console.log( "[{ x: 0, y: " + myLikes[0]+", },{ x: 10, y: "+myLikes[1]+", },{ x: 20, y: "+myLikes[2]+", },{ x: 50, y: "+myLikes[3]+", },{ x: 80, y: "+myLikes[4]+", },{ x: 130, y: "+myLikes[5]+", },{ x: 180, y: "+myLikes[6]+", },{ x: 280, y: "+myLikes[7]+", },{ x: 380, y: "+myLikes[8]+", },{ x: 1000, y: "+myLikes[9]+",}];");
+					console.log( "[{ x: 0, y: " + myLikes[0]+", },{ x: 1, y: "+myLikes[1]+", },{ x: 2, y: "+myLikes[2]+", },{ x: 3, y: "+myLikes[3]+", },{ x: 4, y: "+myLikes[4]+", },{ x: 5, y: "+myLikes[5]+", },{ x: 6, y: "+myLikes[6]+", },{ x: 7, y: "+myLikes[7]+", },{ x: 8, y: "+myLikes[8]+", },{ x: 9, y: "+myLikes[9]+", },{ x: 10, y: "+myLikes[10]+", },{ x: 11, y: "+myLikes[11]+", },{ x: 12, y: "+myLikes[12]+", },{ x: 13, y: "+myLikes[13]+", },{ x: 14, y: "+myLikes[14]+", },{ x: 15, y: "+myLikes[15]+", },{ x: 16, y: "+myLikes[16]+", },{ x: 17, y: "+myLikes[17]+", },{ x: 18, y: "+myLikes[18]+", },{ x: 19, y: "+myLikes[19]+",}];");
 					tip.className = "tooltip-hidden";
 				}
 		// --------- until this
@@ -199,7 +201,7 @@
 	,"http://7450_image_api.wuzizheng.com/location/401306254.json","http://7450_image_api.wuzizheng.com/location/923043.json"
 	,"http://7450_image_api.wuzizheng.com/location/962437084.json");
 	
-	var myLikes = new Array(0,0,0,0,0,0,0,0,0,0);
+	var myLikes = new Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 	var myMax = 0;
 	for(i_2 = 0; i_2 < 17; i_2 ++){
 	
@@ -211,26 +213,46 @@
 			for(i = 0; i < data.length; i++){
 			
 				myMax ++;
-				if(data[i].likes.count < 10){
+				if(data[i].likes.count < 2){
 					myLikes[0] = myLikes[0] + 1;
-				}else if(data[i].likes.count < 20){
+				}else if(data[i].likes.count < 4){
 						myLikes[1] ++;						
-				}else if(data[i].likes.count < 30){
+				}else if(data[i].likes.count < 6){
 						myLikes[2] ++;						
-				}else if(data[i].likes.count < 60){
+				}else if(data[i].likes.count < 8){
 						myLikes[3] ++;						
-				}else if(data[i].likes.count < 90){
+				}else if(data[i].likes.count < 10){
 						myLikes[4] ++;						
-				}else if(data[i].likes.count < 140){
+				}else if(data[i].likes.count < 28){
 						myLikes[5] ++;						
-				}else if(data[i].likes.count < 190){
+				}else if(data[i].likes.count < 46){
 						myLikes[6] ++;						
-				}else if(data[i].likes.count < 290){
+				}else if(data[i].likes.count < 64){
 						myLikes[7] ++;						
-				}else if(data[i].likes.count < 390){
+				}else if(data[i].likes.count < 82){
 						myLikes[8] ++;						
-				}else if(data[i].likes.count >= 390){
+				}else if(data[i].likes.count < 100){
 						myLikes[9] ++;						
+				}else if(data[i].likes.count < 280){
+						myLikes[10] ++;						
+				}else if(data[i].likes.count < 460){
+						myLikes[11] ++;						
+				}else if(data[i].likes.count < 640){
+						myLikes[12] ++;						
+				}else if(data[i].likes.count < 720){
+						myLikes[13] ++;						
+				}else if(data[i].likes.count < 1000){
+						myLikes[14] ++;						
+				}else if(data[i].likes.count < 2800){
+						myLikes[15] ++;						
+				}else if(data[i].likes.count < 4600){
+						myLikes[16] ++;						
+				}else if(data[i].likes.count < 6400){
+						myLikes[17] ++;						
+				}else if(data[i].likes.count < 7200){
+						myLikes[18] ++;						
+				}else if(data[i].likes.count >= 7200){
+						myLikes[19] ++;						
 				}					
 
 			}
@@ -240,11 +262,11 @@
 	
 	// this part is about area chart
 	// this data is pre-calculated by the code above, if anyone want to reset it, just run again, and you can get the output which is ok to copy&paste here.
-	var data = [{ x: 0, y: 3177, },{ x: 10, y: 3399, },{ x: 20, y: 2179, },{ x: 50, y: 2835, },{ x: 80, y: 971, },{ x: 130, y: 706, },{ x: 180, y: 240, },{ x: 280, y: 200, },{ x: 380, y: 77, },{ x: 530, y: 5,}];
+	var data = [{ x: 0, y: 259, },{ x: 1, y: 465, },{ x: 2, y: 657, },{ x: 3, y: 701, },{ x: 4, y: 703, },{ x: 5, y: 4472, },{ x: 6, y: 1901, },{ x: 7, y: 891, },{ x: 8, y: 470, },{ x: 9, y: 358, },{ x: 10, y: 802, },{ x: 11, y: 99, },{ x: 12, y: 33, },{ x: 13, y: 12, },{ x: 14, y: 36, },{ x: 15, y: 51, },{ x: 16, y: 28, },{ x: 17, y: 32, },{ x: 18, y: 6, },{ x: 19, y: 89,}];
 
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 775 - margin.left - margin.right,
-    height = 650 - margin.top - margin.bottom;
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 375 - margin.left - margin.right,
+    height = 150 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
     .domain([0, d3.max(data, function(d) { return d.x; })])
@@ -267,7 +289,7 @@ var area = d3.svg.area()
     .y0(height)
     .y1(function(d) { return y(d.y); });
 
-var svg = d3.select("svg#area")
+var svg = d3.select("svg#areachart")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -281,11 +303,11 @@ svg.append("path")
 svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+    //.call(xAxis);
 
 svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);	
+    .attr("class", "y axis");
+    //.call(yAxis);	
 
 		
 		
