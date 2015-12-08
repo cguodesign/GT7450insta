@@ -1,4 +1,7 @@
+var choosed_tags = [];
+
 function draw_barchart(rawdata) {
+
     var tags_dictionary = {};
     for (var i in rawdata) {
         for (var j in rawdata[i]["tags"]) {
@@ -23,6 +26,8 @@ function draw_barchart(rawdata) {
         }
         count += 1;
     }
+    
+    $("#tag_bar").html("");
 
     var chart = document.getElementById("tag_bar"),
         axisMargin = 20,
@@ -62,14 +67,12 @@ function draw_barchart(rawdata) {
         .text(function(d){
             return d[0];
         }).each(function() {
-        labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
-    });
+            labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
+        });
 
     scale = d3.scale.linear()
         .domain([0, max])
         .range([0, width - margin*2 - labelWidth]);
-
-    
 
     bar.append("rect")
         .attr("transform", "translate("+labelWidth+", 0)")

@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <style type="text/css">
+        body {
+            font-family: verdana, sans-serif;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Demo <a href="//github.com/marmelab/EventDrops">EventDrops</a> Chart for Twitter Hashtags</h1>
+        <p>This demo assumes that you already have tweets stored on your server and can queue for polling.</p>
+        <p>
+            View this source to see how we added jQuery Ajax functionality to the
+            original <a href="//github.com/marmelab/EventDrops/blob/master/example/custom/index.html">example</a>.
+        </p>
+        <div id="chart_placeholder"></div>
+        <div style="text-align: center" id="legend"></div>
+        <script src="lib/d3.js"></script>
+        <script src="js/eventDrops.js"></script>
+        <script>
+            var chartPlaceholder = document.getElementById('chart_placeholder');
+            var hashtags = ["#google", "#github", "#bitcoin", "#reddit"];
+
+            var data = [];
+            var fiveMinutes = 5 * 60 * 1000;
+            var endTime = Date.now() + fiveMinutes;
+            var startTime = Date.now();
+
+            function initEvents (hashtag) {
+                var event = {};
+                event.name = hashtag;
+                event.dates = [];
+                return event;
+            }
+
+            for (var i = 0; i < hashtags.length; i++) {
+                data.push(initEvents(hashtags[i]));
+            }
+
+            var color = d3.scale.category20();
+
+            var locale = d3.locale({
+                "decimal": ",",
+                "thousands": " ",
+                "grouping": [3],
+                "dateTime": "%A %e %B %Y, %X",
+                "date": "%d/%m/%Y",
+                "time": "%H:%M:%S",
+                "periods": ["AM", "PM"],
+                "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                "shortMonths": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            });
+
+            var graph = d3.chart.eventDrops()
+                .start(new Date(startTime))
+                .end(new Date(endTime))
+                .locale(locale)
+                .eventColor(function (datum, index) {
+                    return color(index);
+                })
+                .width(800)
+                .margin({ top: 100, left: 200, bottom: 0, right: 0 })
+                .axisFormat(function(xAxis) {
+                    xAxis.ticks(5);
+                })
+                .eventHover(function(el) {
+                    var hashtag = el.parentNode.firstChild.innerHTML;
+                    var timestamp = d3.select(el).data()[0]
+                    document.getElementById('legend').innerHTML = 'A Tweet at [' + timestamp + '] with hashtag "' + hashtag + '"';
+                });
+
+            var element = d3.select(chartPlaceholder).append('div').datum(data);
+            graph(element);
+
+            var addData = function() {
+                url = 'example.php';
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    async: true,
+                    cache: false,
+                    timeout:10000,
+                    success: function(data){
+                        if(data && data.length > 0){
+                            var jsonObj = JSON.parse(data);
+                            appendData(jsonObj.hashtag, new Date(jsonObj.timestamp * 1000));
+                        }
+                        setTimeout(addData, 2000);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        console.log(textStatus + ', ' + errorThrown);
+                        setTimeout(addData, 5000);
+                    }
+                });
+            }
+
+            var appendData = function (hashtag, time) {
+                var data = element.datum();
+
+                for(i in data){
+                    if(data[i].name == hashtag){
+                        data[i].dates.push(time);
+                        break;
+                    }
+                }
+
+                elements = element.datum(data);
+                graph(element);
+            }
+
+            $(document).ready(function(){
+               addData();
+            });
+
+        </script>
+
+    </body>
+</html>

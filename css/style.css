@@ -19,6 +19,12 @@
     }
 }
 
+h3 {
+	font-size: 12px;
+	height: 40px;
+	padding-bottom: 10px;
+}
+
 .y-axis g line {
     stroke: grey;
     fill: none;
@@ -29,6 +35,13 @@
     opacity: 0.1;
 }
 
+
+#photo_drawer{
+	width: 100%;
+	height: 350px;
+	border-bottom-width: 1px;
+	border-bottom-color: #666666;
+}
 
 /*For tree map*/
 .node {
@@ -131,7 +144,7 @@
 	font-size: 15px;
 	text-align: center;
 	margin: 0;
-	line-height: 60px;
+	line-height: 40px;
 	color: #999;
 	font-style: italic;
 }
@@ -170,12 +183,24 @@
 
  .leftcontent {
     position: absolute;
-    left:0%;
-    width:13%;
+    left:3%;
+    width:10%;
     top:0px;
     font-family: roboto;
     background-color: #fff;
   }
+
+  .leftcontent > h3 {
+  	text-align: center;
+  }
+
+  .dataleft {
+  	margin-top: 65px;
+  }
+
+ #center_panel {
+ 	margin-left:  -100px;
+ }
 
  .centercontent {
     position: absolute;
@@ -183,7 +208,7 @@
     width:63%;
     top:0px;
     font-family: roboto;
-    background-color: yellow;
+    background-color: #fff;
   }
 
 
@@ -193,7 +218,7 @@
     width:24%;
     top:0px;
     font-family: roboto;
-    background-color: green;
+    background-color: #fff;
   }
 
 .data{
@@ -277,13 +302,13 @@
     }
 
     .value {
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 300;
         fill: #333;
     }
 
     .label {
-        font-size: 18px;
+        font-size: 14px;
         fill: #333;
     }
 
@@ -298,8 +323,23 @@
         stroke: rgba(0, 0, 0, 0.1);
     }
 	#tag_bar {
-		height: 400px;
-		width: 300px;
+		height: 350px;
+		width:300px;
+		font-size: 10px;
+	}
+
+	.panel12345 {
+	position: fixed;
+	top: 170px;
+	margin-left: 20px;
+	width: 100px;
+	height: 100px;
+	z-index: 10;
+	}
+
+	#map {
+	width: 100%;
+    height: 500px;
 	}
 /*End fenghui */
 @media screen and (max-width: 46.0625em) {
