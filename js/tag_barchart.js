@@ -1,3 +1,5 @@
+var choosed_tags = [];
+
 function draw_barchart(rawdata) {
 
     var tags_dictionary = {};
@@ -61,18 +63,16 @@ function draw_barchart(rawdata) {
     bar.append("text")
         .attr("class", "label")
         .attr("y", barHeight / 2)
-        .attr("dy", ".20em") //vertical align middle
+        .attr("dy", ".35em") //vertical align middle
         .text(function(d){
             return d[0];
         }).each(function() {
-        labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
-    });
+            labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
+        });
 
     scale = d3.scale.linear()
         .domain([0, max])
         .range([0, width - margin*2 - labelWidth]);
-
-    
 
     bar.append("rect")
         .attr("transform", "translate("+labelWidth+", 0)")
@@ -83,9 +83,9 @@ function draw_barchart(rawdata) {
 
     bar.append("text")
         .attr("class", "value")
-        .attr("y", barHeight / 3)
+        .attr("y", barHeight / 2)
         .attr("dx", -valueMargin + labelWidth) //margin right
-        .attr("dy", ".10em") //vertical align middle
+        .attr("dy", ".35em") //vertical align middle
         .attr("text-anchor", "end")
         .text(function(d){
             return d[1];

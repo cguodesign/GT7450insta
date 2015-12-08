@@ -38,7 +38,7 @@ h3 {
 
 #photo_drawer{
 	width: 100%;
-	height: 150px;
+	height: 350px;
 	border-bottom-width: 1px;
 	border-bottom-color: #666666;
 }
@@ -302,13 +302,13 @@ h3 {
     }
 
     .value {
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 300;
         fill: #333;
     }
 
     .label {
-        font-size: 18px;
+        font-size: 14px;
         fill: #333;
     }
 
@@ -324,8 +324,22 @@ h3 {
     }
 	#tag_bar {
 		height: 350px;
-		width:300px
+		width:300px;
 		font-size: 10px;
+	}
+
+	.panel12345 {
+	position: fixed;
+	top: 170px;
+	margin-left: 20px;
+	width: 100px;
+	height: 100px;
+	z-index: 10;
+	}
+
+	#map {
+	width: 100%;
+    height: 500px;
 	}
 /*End fenghui */
 @media screen and (max-width: 46.0625em) {

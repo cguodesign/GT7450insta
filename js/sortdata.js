@@ -24,6 +24,7 @@ var eventDropsChart = d3.chart.eventDrops()
                     var timestamp = d3.select(el).data()[0];
                     var unixtime = Date.parse(timestamp)/1000;
                     var location = el.parentNode.firstChild.__data__.name;
+                    //var style = el.parentNode.firstChild.style;
                     for (var i in eventdrop_location) {
                         if (eventdrop_location[i].name != location) {
 
@@ -76,6 +77,17 @@ var Initial_Eventdrop_location = function(d){
   //console.log(eventdrop_location);
 }
 
+var sort_on_filter = function(dd){
+	for (f = 0 ; f < disabled.length; f++){
+		if (disabled[f] == dd.filter){
+			console.log("paired");
+			return false;
+		}else{
+			return true;
+		};
+	};
+}
+
 var addGamesDots = function(d){
   var url_heading = "http://7450_image_api.wuzizheng.com/location/"
   for (game = 0; game < d.length; game++){
@@ -96,7 +108,9 @@ var addGamesDots = function(d){
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
                     if (Math.random() > 0.95){
-                    	appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.thumbnail.url, obj.filter, obj.tags, obj.likes.count, obj.location);
+                    	if (sort_on_filter(obj) == true){
+                    		appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location);
+                    	}
                 	}
                   });
                 };
@@ -135,7 +149,7 @@ var addGamesDots_new = function(gameid){
                   data.forEach(function(obj) {
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
-                      appendData(gameid, new Date(obj.created_time * 1000),obj.images.thumbnail.url, obj.filter, obj.tags, obj.likes.count, obj.location);
+                      		appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location);
                     });
                 };
               setTimeout(appendData, 2000);
@@ -185,14 +199,17 @@ var appendData = function (game_time, time, url_hey, filter_hey, tag_hey, like_h
      //graph(element);
 }
 
-Initial_Eventdrop_location(all_games);
-addGamesDots(all_games);
-addGamesDots_user(location_user_dict);
+var refresh_main = function(){
+	$("#center_panel").html("");
 
-console.log(eventdrop_location);
-var element_center = d3.select(middle_placeholder).append('div').datum(eventdrop_location);
-eventDropsChart(element_center);
+	Initial_Eventdrop_location(all_games);
+	addGamesDots(all_games);
+	addGamesDots_user(location_user_dict);
 
+	console.log(eventdrop_location);
+	var element_center = d3.select(middle_placeholder).append('div').datum(eventdrop_location);
+	eventDropsChart(element_center);
+}
 /*
 var callTreeMap = function (data){
 	for (d = 0; d < data.length; d++){
