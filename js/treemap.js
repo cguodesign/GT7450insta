@@ -11,6 +11,8 @@ var treemap = d3.layout.treemap()
     .sticky(true)
     .value(function(d) { return d.size; });
 
+$("#filterbar").html("");
+
 var treediv = d3.select("#filterbar").append("div")
     .style("position", "relative")
     .style("width", (width + margin.left + margin.right) + "px")

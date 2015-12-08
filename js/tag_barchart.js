@@ -1,4 +1,5 @@
 function draw_barchart(rawdata) {
+
     var tags_dictionary = {};
     for (var i in rawdata) {
         for (var j in rawdata[i]["tags"]) {
@@ -23,6 +24,8 @@ function draw_barchart(rawdata) {
         }
         count += 1;
     }
+    
+    $("#tag_bar").html("");
 
     var chart = document.getElementById("tag_bar"),
         axisMargin = 20,
@@ -58,7 +61,7 @@ function draw_barchart(rawdata) {
     bar.append("text")
         .attr("class", "label")
         .attr("y", barHeight / 2)
-        .attr("dy", ".35em") //vertical align middle
+        .attr("dy", ".20em") //vertical align middle
         .text(function(d){
             return d[0];
         }).each(function() {
@@ -80,9 +83,9 @@ function draw_barchart(rawdata) {
 
     bar.append("text")
         .attr("class", "value")
-        .attr("y", barHeight / 2)
+        .attr("y", barHeight / 3)
         .attr("dx", -valueMargin + labelWidth) //margin right
-        .attr("dy", ".35em") //vertical align middle
+        .attr("dy", ".10em") //vertical align middle
         .attr("text-anchor", "end")
         .text(function(d){
             return d[1];

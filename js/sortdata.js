@@ -193,7 +193,7 @@ console.log(eventdrop_location);
 var element_center = d3.select(middle_placeholder).append('div').datum(eventdrop_location);
 eventDropsChart(element_center);
 
-
+/*
 var callTreeMap = function (data){
 	for (d = 0; d < data.length; d++){
 		draw_treemap(data[d]);
@@ -201,3 +201,4 @@ var callTreeMap = function (data){
 }
 
 callTreeMap(eventdrop_location);
+*/
