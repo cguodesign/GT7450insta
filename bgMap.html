@@ -1,0 +1,367 @@
+<html>
+<head>
+	<title>Map Example</title>
+
+	<meta charset=utf-8 />
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312"> 
+
+	<script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
+
+	<script type="text/javascript" src="js/nouislider.min.js"></script>
+	<link rel="stylesheet" href="css/nouislider.min.css" type="text/css">
+	
+	<script src="lib/d3.js"></script>
+
+<script language="javascript">
+function showsubmenu()
+{
+ if ( document.all.map.style.display == "none" ) 
+ {
+	document.all.map.style.display = "";
+	//document.all.map.style = #map;
+ }
+ else
+ {
+  document.all.map.style.display = "none" ;
+ }
+}
+</script>
+
+
+
+<style>
+	body { margin:0; padding:0; }
+	#map { position:absolute; top:0; bottom:0; width:100%; z-index:0;} <!-- negative z may cause non-respond of map-->
+	
+	
+	svg { border: 0px solid #dedede; }
+	.axis path,
+	.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+	}
+	.area {
+	fill: steelblue;
+	}
+	
+
+</style>
+
+</head>
+<body>
+
+	<a href="#" click=true onClick="showsubmenu()" > ShowOrHide_Map</a> 
+	
+	<div id='map' style="height: 750px; width: 1000px; margin-left: 25px; margin-top: 75px;"; ></div>
+	
+	<ul id="myfilterul" style="margin-left: 1050px; margin-top: 100px;";></ul>
+
+
+	<div id='my_filter1' style="width: 200px; margin-left: 1050px; margin-top: 200px;";></div>	
+	<div style="margin-left: 1050px; margin-top: -50px;"> Followers!</div>
+	
+	<svg id="areachart" style="width: 200px; margin-left: 1050px; margin-top: 150px;";></svg>
+	
+	<div id='my_filter2' style="width: 200px; margin-left: 1050px; margin-top: 30px;";></div>
+	<div style="margin-left: 1050px; margin-top: -40px;"> Likes!</div>
+	
+	<script>
+
+	
+	// this part is about map  and addLocation API
+	var testposX = 38;
+	var testposY = - 77;
+	
+	L.mapbox.accessToken = 'pk.eyJ1Ijoid2F3amNoaW5hd2N0IiwiYSI6ImNpZ3Ezeno1aTAxdWJ0cGtuaWZrNmM3ZTcifQ.M0MdppZcEwKBx4kpAQLk3w';
+    var map = L.mapbox.map('map', 'mapbox.streets', {
+        center: [40.91557, -77.03198],
+        zoom: 6
+    });
+    //L.marker([38.9206, -77.0357]).bindLabel('Meridian Hill Park').addTo(map);
+    //L.marker([38.909776, -77.034097]).bindLabel('Sweetgreen').addTo(map);
+    //L.marker([38.917139, -77.031745]).bindLabel('Subway').addTo(map);
+    //L.marker([38.914722, -77.034414]).bindLabel('St James Church').addTo(map);
+    //L.marker([38.91680, -77.02889]).bindLabel('U Street Metro').addTo(map);
+    //L.marker([40.914271, -77.028293]).bindLabel('The Coffee Bar #1 Node').addTo(map);	
+	//L.marker([43.91680, -77.02889]).bindPopup('U Street Metro  #1 Node').addTo(map);
+	
+	//
+	function newLocation(posX, posY, intro){
+		L.marker([posX, posY]).bindLabel(intro).addTo(map);
+	}
+	
+	
+	
+	
+	//  --- this part is about sliders and their operations: add , replace , delete
+	
+	var indexoffilter1 = -1;
+	var indexoffilter2 = -1;
+	var indexoffilter3 = -1;
+	
+	
+	var nonLinearSlider1 = document.getElementById('my_filter1');
+	noUiSlider.create(nonLinearSlider1, {
+		connect: true,
+		behaviour: 'tap',
+		start: [ 500, 4000 ],
+		range: {
+		// Starting at 500, step the value by 500,
+		// until 4000 is reached. From there, step by 1000.
+			'min': [ 0 ],
+			'10%': [ 500, 500 ],
+			'50%': [ 4000, 1000 ],
+			'max': [ 10000 ]
+		},
+		pips: {
+		mode: 'values',
+		values: [500, 8000],
+		density: 2
+		}
+	});
+	
+		var nonLinearSlider2 = document.getElementById('my_filter2');
+		noUiSlider.create(nonLinearSlider2, {
+		connect: true,
+		behaviour: 'tap',
+		start: [ 10, 1000 ],
+		range: {
+		// Starting at 500, step the value by 500,
+		// until 4000 is reached. From there, step by 1000.
+			'min': [ 1, 1 ],
+			'25%': [ 10, 1 ],
+			'50%': [ 100, 1 ],
+			'75%': [ 1000, 1 ],
+			'max': [ 9999 ]
+		},
+		pips: {
+		mode: 'values',
+		values: [1,100,9999],
+		density: 2
+		}
+	});
+	
+	function fff(id){
+	  var obj=document.getElementById(id);
+	  return obj;
+	}
+	
+	function del(n) {  
+		if(n == "filter1"){
+			fff('myfilterul').removeChild(fff(n));
+			indexoffilter1 = -4;
+			nonLinearSlider1.noUiSlider.set([0, null]);
+			nonLinearSlider1.noUiSlider.set([null, 10000]);	
+			//alert("reset: " + indexoffilter1);			
+			return;
+		}		
+		
+		if(n == "filter2"){
+			fff('myfilterul').removeChild(fff(n));
+			indexoffilter2 = -4;
+			nonLinearSlider2.noUiSlider.set([0, null]);
+			nonLinearSlider2.noUiSlider.set([null, 10000]);	
+			//alert("reset: " + indexoffilter2);			
+			return;
+		}	
+	}
+	
+		nonLinearSlider1.noUiSlider.on('update', function ( values, handle ) {
+		if ( !handle ) {
+				addfilter(1,values[0],values[1]);
+				newLocation(testposX, testposY, "Test Marker")
+				testposX += 3;
+				testposY += 3;				
+				return;
+				//lowerValue.innerHTML = values[handle] + ', ' + leftValue(handles[handle]);
+				//alert(values[0]);// + "," + leftValue(handles[handle]));				
+			} else {
+				addfilter(1,values[0],values[1]);
+				return;
+				//alert(values[1] + "...");// + leftValue(handles[handle]));
+				//upperValue.innerHTML = values[handle] + ', ' + leftValue(handles[handle]);
+			}
+		});	 
+	
+		nonLinearSlider2.noUiSlider.on('update', function ( values, handle ) {
+		if ( !handle ) {
+				addfilter(2,values[0],values[1]);
+				return;
+	
+			} else {
+				addfilter(2,values[0],values[1]);
+				return;
+
+			}
+		});	 
+		
+		
+	function addfilter(numoffilter, value1, value2){
+     //chk ul childNodes is WRONG!!!!  children.length
+	 var txt = value1 + "  ,  " + value2;
+	 var ul_obj=fff('myfilterul').children;		
+		if(numoffilter == 1){
+			var flag = true;
+			//var ul_obj=fff('myfilterul').children;		
+		    //alert("current 1: " + indexoffilter1);	
+			if(indexoffilter1 < -1 ){
+				indexoffilter1++;
+				//alert("current index: "indexoffilter1);
+				return;
+			}
+			
+			if(indexoffilter1 == -1){
+				//alert("已经添加！");
+				//alert("equal -1");
+				flag=false;
+				indexoffilter1 = ul_obj.length;
+			}		 
+      
+			if(!flag){
+				addf("filter1",txt);
+			}else{
+				replacef("filter1",txt);
+			}      
+
+		}
+		
+		
+		if(numoffilter == 2){
+			var flag = true;
+			//var ul_obj=fff('myfilterul').children;		
+		    //alert("current 2: " + indexoffilter2);	
+			if(indexoffilter2 < -1 ){
+				indexoffilter2++;
+				//alert("current index: "indexoffilter1);
+				return;
+			}
+			
+			if(indexoffilter2 == -1){
+				//alert("已经添加！");
+				//alert("equal -1");
+				flag=false;
+				indexoffilter2 = ul_obj.length;
+			}		 
+      
+			if(!flag){
+				addf("filter2",txt);
+			}else{
+				replacef("filter2",txt);
+			}      
+
+		}
+		
+		
+		/*if(numoffilter == 1){
+			var flag = true;
+			//var ul_obj=fff('myfilterul').children;		
+		    alert("current 1: " + indexoffilter1);	
+			if(indexoffilter1 < -1 ){
+				indexoffilter1++;
+				//alert("current index: "indexoffilter1);
+				return;
+			}
+			
+			if(indexoffilter1 == -1){
+				//alert("已经添加！");
+				alert("equal -1");
+				flag=false;
+				indexoffilter1 = ul_obj.length;
+			}		 
+      
+			if(!flag){
+				addf("filter1",txt);
+			}else{
+				replacef("filter1",txt);
+			}      
+
+		}*/
+		
+
+		return;
+	}
+		
+	function addf(id,txt) {  
+		var ul=fff('myfilterul');  
+		var li= document.createElement("li");  
+		var href_a = document.createElement("a");
+            href_a.href="javascript:del('"+id+"');";
+			href_a.innerHTML ="del";
+		    li.innerHTML=txt;
+			li.id=id;
+			li.appendChild(href_a);
+			ul.appendChild(li);  
+	}
+	
+	function replacef(id,txt) {  
+		var li= document.getElementById(id);//document.createElement("li");  
+		var href_a = document.createElement("a");
+            href_a.href="javascript:del('"+id+"');";
+			href_a.innerHTML ="del";
+		    li.innerHTML=txt;
+		//	li.id=id;
+			li.appendChild(href_a);
+			
+			
+		// this is about area chart on top of slider
+		var data = [{ x: 0, y: 259, },{ x: 1, y: 465, },{ x: 2, y: 657, },{ x: 3, y: 701, },{ x: 4, y: 703, },{ x: 5, y: 4472, },{ x: 6, y: 1901, },{ x: 7, y: 891, },{ x: 8, y: 470, },{ x: 9, y: 358, },{ x: 10, y: 802, },{ x: 11, y: 99, },{ x: 12, y: 33, },{ x: 13, y: 12, },{ x: 14, y: 36, },{ x: 15, y: 51, },{ x: 16, y: 28, },{ x: 17, y: 32, },{ x: 18, y: 6, },{ x: 19, y: 89,}];
+
+	var margin = {top: 5, right: 5, bottom: 5, left: 5},
+		width = 195 - margin.left - margin.right,
+		height = 50 - margin.top - margin.bottom;
+
+	var x = d3.scale.linear()
+		.domain([0, d3.max(data, function(d) { return d.x; })])
+		.range([0, width]);
+
+	var y = d3.scale.linear()
+		.domain([0, d3.max(data, function(d) { return d.y; })])
+		.range([height, 0]);
+
+	var xAxis = d3.svg.axis()
+		.scale(x)
+		.orient("bottom");
+
+	var yAxis = d3.svg.axis()
+		.scale(y)
+		.orient("left");
+
+	var area = d3.svg.area()
+		.x(function(d) { return x(d.x); })
+		.y0(height)
+		.y1(function(d) { return y(d.y); });
+
+	var svg = d3.select("svg#areachart")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	svg.append("path")
+		.datum(data)
+		.attr("class", "area")
+		.attr("d", area);
+
+	svg.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		//.call(xAxis);
+
+	svg.append("g")
+		.attr("class", "y axis");
+		//.call(yAxis);	
+
+
+			
+	}
+
+</script>
+	
+</body>
+</html>
