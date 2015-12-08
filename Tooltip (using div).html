@@ -3,6 +3,9 @@
     <head>
         <title>MyHtml.html</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+					
+		<script src="lib/d3.js"></script>
+		
         <style>
 		    .pop {     width: 80%;      border: 1px #96D1DF solid;     background: #fff;     padding: 1px;
                                              color: #333;     position: absolute;     top: 15%;     left: 15%;     height: auto;     z-index: 10     }
@@ -32,19 +35,19 @@
 			}
 			
 			
-		svg { border: 0px solid #dedede; }
-		.axis path,
-		.axis line {
-		fill: none;
-		stroke: #000;
-		shape-rendering: crispEdges;
-		}
-		.area {
-		fill: steelblue;
-		}
-		
+			svg { border: 0px solid #dedede; }
+			.axis path,
+			.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+			}
+			.area {
+			fill: steelblue;
+			}		
             </style>
 
+			
             <script>
 			
 			// this is popup & drag(we don't need this) function of the button in the middle
@@ -134,9 +137,10 @@
 
 			//--------   until here
             </script>
-			
-			<script src="lib/d3.js"></script>
+
         </head>
+		
+		
         <body>
 		
 		<img id="about" src="Untitled.jpg">
@@ -144,9 +148,7 @@
 		<div class="triangle"></div>
 		<div class="square">进入首页</div>
 		</div>
-
-
-			
+		
             <input type="button" value="Popup"      onmouseenter="xingZQYTree.style.display = '';xingZQYTree.style.top = event.clientY;
                 xingZQYTree.style.left = event.clientX" onMouseOut = "xingZQYTree.style.display = 'none';"/>
 
@@ -168,13 +170,12 @@
 		
 		
 		<svg id="areachart" ></svg>
-<path class="area" d="M0,214.28571428571428L168.33333333333331,
-171.42857142857142L336.66666666666663,0L505,128.57142857142858L505,
-300L336.66666666666663,300L168.33333333333331,300L0,300Z"></path>
+		<path class="area" d="M0,214.28571428571428L168.33333333333331,
+		171.42857142857142L336.66666666666663,0L505,128.57142857142858L505,
+		300L336.66666666666663,300L168.33333333333331,300L0,300Z"></path>
 		
-		<script>
-		
-		
+				
+		<script>		
 				//this is popup function of upper left picture		
 				var tip= document.querySelector("#tooltip");
 				var about = document.querySelector("#about");
@@ -189,7 +190,9 @@
 				}
 		// --------- until this
 		
+			
 		
+		/*
 		//  test d3 component, and calculate likes for every photos.
 			var myArray = new Array("http://7450_image_api.wuzizheng.com/location/102089.json","http://7450_image_api.wuzizheng.com/location/1264107.json"
 	,"http://7450_image_api.wuzizheng.com/location/16430.json","http://7450_image_api.wuzizheng.com/location/216284597.json"
@@ -259,10 +262,14 @@
 		})
 
 	}
+	*/
+	
 	
 	// this part is about area chart
 	// this data is pre-calculated by the code above, if anyone want to reset it, just run again, and you can get the output which is ok to copy&paste here.
-	var data = [{ x: 0, y: 259, },{ x: 1, y: 465, },{ x: 2, y: 657, },{ x: 3, y: 701, },{ x: 4, y: 703, },{ x: 5, y: 4472, },{ x: 6, y: 1901, },{ x: 7, y: 891, },{ x: 8, y: 470, },{ x: 9, y: 358, },{ x: 10, y: 802, },{ x: 11, y: 99, },{ x: 12, y: 33, },{ x: 13, y: 12, },{ x: 14, y: 36, },{ x: 15, y: 51, },{ x: 16, y: 28, },{ x: 17, y: 32, },{ x: 18, y: 6, },{ x: 19, y: 89,}];
+	
+	
+	/*var data = [{ x: 0, y: 259, },{ x: 1, y: 465, },{ x: 2, y: 657, },{ x: 3, y: 701, },{ x: 4, y: 703, },{ x: 5, y: 4472, },{ x: 6, y: 1901, },{ x: 7, y: 891, },{ x: 8, y: 470, },{ x: 9, y: 358, },{ x: 10, y: 802, },{ x: 11, y: 99, },{ x: 12, y: 33, },{ x: 13, y: 12, },{ x: 14, y: 36, },{ x: 15, y: 51, },{ x: 16, y: 28, },{ x: 17, y: 32, },{ x: 18, y: 6, },{ x: 19, y: 89,}];
 
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
     width = 375 - margin.left - margin.right,
@@ -309,7 +316,7 @@ svg.append("g")
     .attr("class", "y axis");
     //.call(yAxis);	
 
-		
+		*/
 		
 		</script>
 		
