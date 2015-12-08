@@ -78,7 +78,13 @@ var addGamesDots = function(d){
                   data.forEach(function(obj) {
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
+<<<<<<< HEAD:Project/js/sortdata.js
                     appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.standard_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location);
+=======
+                      if (Math.random() > 0.9) {
+                          appendData(obj.location.id, new Date(obj.created_time * 1000));
+                      }
+>>>>>>> master:js/sortdata.js
                   });
                 };
               setTimeout(appendData, 2000);

@@ -14,6 +14,8 @@
 
 	<script type="text/javascript" src="js/nouislider.min.js"></script>
 	<link rel="stylesheet" href="css/nouislider.min.css" type="text/css">
+	
+	<script src="lib/d3.js"></script>
 
 <script language="javascript">
 function showsubmenu()
@@ -35,6 +37,19 @@ function showsubmenu()
 <style>
 	body { margin:0; padding:0; }
 	#map { position:absolute; top:0; bottom:0; width:100%; z-index:0;} <!-- negative z may cause non-respond of map-->
+	
+	
+	svg { border: 0px solid #dedede; }
+	.axis path,
+	.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+	}
+	.area {
+	fill: steelblue;
+	}
+	
 
 </style>
 
@@ -50,14 +65,16 @@ function showsubmenu()
 
 	<div id='my_filter1' style="width: 200px; margin-left: 1050px; margin-top: 200px;";></div>	
 	<div style="margin-left: 1050px; margin-top: -50px;"> Followers!</div>
-	<div id='my_filter2' style="width: 200px; margin-left: 1050px; margin-top: 150px;";></div>
-	<div style="margin-left: 1050px; margin-top: -50px;"> Likes!</div>
+	
+	<svg id="areachart" style="width: 200px; margin-left: 1050px; margin-top: 150px;";></svg>
+	
+	<div id='my_filter2' style="width: 200px; margin-left: 1050px; margin-top: 30px;";></div>
+	<div style="margin-left: 1050px; margin-top: -40px;"> Likes!</div>
 	
 	<script>
-	var indexoffilter1 = -1;
-	var indexoffilter2 = -1;
-	var indexoffilter3 = -1;
+
 	
+	// this part is about map  and addLocation API
 	var testposX = 38;
 	var testposY = - 77;
 	
@@ -78,6 +95,16 @@ function showsubmenu()
 	function newLocation(posX, posY, intro){
 		L.marker([posX, posY]).bindLabel(intro).addTo(map);
 	}
+	
+	
+	
+	
+	//  --- this part is about sliders and their operations: add , replace , delete
+	
+	var indexoffilter1 = -1;
+	var indexoffilter2 = -1;
+	var indexoffilter3 = -1;
+	
 	
 	var nonLinearSlider1 = document.getElementById('my_filter1');
 	noUiSlider.create(nonLinearSlider1, {
@@ -103,19 +130,20 @@ function showsubmenu()
 		noUiSlider.create(nonLinearSlider2, {
 		connect: true,
 		behaviour: 'tap',
-		start: [ 200, 2000 ],
+		start: [ 10, 1000 ],
 		range: {
 		// Starting at 500, step the value by 500,
 		// until 4000 is reached. From there, step by 1000.
-			'min': [ 0 ],
-			'10%': [ 200, 100 ],
-			'50%': [ 1500, 250 ],
-			'max': [ 3000 ]
+			'min': [ 1, 1 ],
+			'25%': [ 10, 1 ],
+			'50%': [ 100, 1 ],
+			'75%': [ 1000, 1 ],
+			'max': [ 9999 ]
 		},
 		pips: {
 		mode: 'values',
-		values: [200, 2000],
-		density: 4
+		values: [1,100,9999],
+		density: 2
 		}
 	});
 	
@@ -279,8 +307,60 @@ function showsubmenu()
 		    li.innerHTML=txt;
 		//	li.id=id;
 			li.appendChild(href_a);
+			
+			
+		// this is about area chart on top of slider
+		var data = [{ x: 0, y: 259, },{ x: 1, y: 465, },{ x: 2, y: 657, },{ x: 3, y: 701, },{ x: 4, y: 703, },{ x: 5, y: 4472, },{ x: 6, y: 1901, },{ x: 7, y: 891, },{ x: 8, y: 470, },{ x: 9, y: 358, },{ x: 10, y: 802, },{ x: 11, y: 99, },{ x: 12, y: 33, },{ x: 13, y: 12, },{ x: 14, y: 36, },{ x: 15, y: 51, },{ x: 16, y: 28, },{ x: 17, y: 32, },{ x: 18, y: 6, },{ x: 19, y: 89,}];
+
+	var margin = {top: 5, right: 5, bottom: 5, left: 5},
+		width = 195 - margin.left - margin.right,
+		height = 50 - margin.top - margin.bottom;
+
+	var x = d3.scale.linear()
+		.domain([0, d3.max(data, function(d) { return d.x; })])
+		.range([0, width]);
+
+	var y = d3.scale.linear()
+		.domain([0, d3.max(data, function(d) { return d.y; })])
+		.range([height, 0]);
+
+	var xAxis = d3.svg.axis()
+		.scale(x)
+		.orient("bottom");
+
+	var yAxis = d3.svg.axis()
+		.scale(y)
+		.orient("left");
+
+	var area = d3.svg.area()
+		.x(function(d) { return x(d.x); })
+		.y0(height)
+		.y1(function(d) { return y(d.y); });
+
+	var svg = d3.select("svg#areachart")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	svg.append("path")
+		.datum(data)
+		.attr("class", "area")
+		.attr("d", area);
+
+	svg.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + height + ")")
+		//.call(xAxis);
+
+	svg.append("g")
+		.attr("class", "y axis");
+		//.call(yAxis);	
+
+
+			
 	}
-	
+
 </script>
 	
 </body>

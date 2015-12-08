@@ -1,6 +1,4 @@
-d3.json("http://7450_image_api.wuzizheng.com/location/239586494.json", function(error, rawdata) {
-    if (error) throw error;
-
+function draw_barchart(rawdata) {
     var tags_dictionary = {};
     for (var i in rawdata) {
         for (var j in rawdata[i]["tags"]) {
@@ -98,7 +96,7 @@ d3.json("http://7450_image_api.wuzizheng.com/location/239586494.json", function(
         .attr("class", "axis")
         .attr("transform", "translate(" + (margin + labelWidth) + ","+ (height - axisMargin - margin)+")")
         .call(xAxis);
-});
+}
 
 function sortProperties(obj)
 {
