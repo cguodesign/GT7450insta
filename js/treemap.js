@@ -18,8 +18,7 @@ var treediv = d3.select("#filterbar").append("div")
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
-d3.json("http://7450_image_api.wuzizheng.com/user/1770019821.json", function(error, rawdata) {
-    if (error) throw error;
+function draw_treemap(rawdata) {
     var filter_dictionary = {};
     for (var i in rawdata) {
         if (!(rawdata[i]["filter"] in filter_dictionary)) {
@@ -77,7 +76,7 @@ d3.json("http://7450_image_api.wuzizheng.com/user/1770019821.json", function(err
             .duration(1500)
             .call(position);
     });
-});
+}
 
 
 function get_disabled(){
