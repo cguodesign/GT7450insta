@@ -1,5 +1,45 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
+/*for chart */
+.zoom {
+    fill: transparent;
+    cursor: pointer;
+}
+
+.y-axis path,
+.y-axis line,
+.x-axis path,
+.x-axis line,
+{
+    path,
+    line {
+        stroke: black;
+        fill: none;
+        stroke-width: 1px;
+    }
+}
+
+.y-axis g line {
+    stroke: grey;
+    fill: none;
+    stroke-width: 1px;
+}
+
+.graph-body .line circle {
+    opacity: 0.1;
+}
+
+
+/*For tree map*/
+.node {
+        border: solid 1px rgba(0,0,0, 0.2);
+        font: 10px sans-serif;
+        line-height: 12px;
+        overflow: hidden;
+        position: absolute;
+        text-indent: 2px;
+}
+
 .titleArea {
 	width: 100%;
 	top: 40px;
@@ -69,7 +109,6 @@
 	color: #9b6954;
 	line-height: 0px;
 }
-
 .football {
 	font-size: 36px;
 	text-align: center;
@@ -110,15 +149,12 @@
 	position: absolute;
 	width: 210px;
 }
-
 #home_area{
 	display: table-cell;
 }
-
 #away_area{
 	display: table-cell;
 }
-
 .game_scoreboard {
 	height: 30px;
 	position: absolute;
@@ -138,7 +174,7 @@
     width:13%;
     top:0px;
     font-family: roboto;
-    background-color: red;P
+    background-color: #fff;
   }
 
  .centercontent {
@@ -147,7 +183,7 @@
     width:63%;
     top:0px;
     font-family: roboto;
-    background-color: yellow;
+    background-color: #fff;
   }
 
 
@@ -157,14 +193,13 @@
     width:24%;
     top:0px;
     font-family: roboto;
-    background-color: green;
+    background-color: #fff;
   }
 
 .data{
 	width: 100%;
 	text-align: center;
-	font-size: 100px;
-	font-weight: 600;
+	font-size: 12px;
 	padding-bottom: 30px;
 }
 
@@ -190,6 +225,88 @@
 	clear: both;
 }
 
+/* From fenghui */
+
+.point {
+  fill: #2f225d;
+  stroke: #afa2dc;
+}
+
+.selected {
+  fill: #afa2dc;
+  stroke: #2f225d;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.clear-button {
+  font: 14px sans-serif;
+  cursor: pointer;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.1);
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+#slider {
+  width: 840px;
+  position: relative;
+  top: 465px;
+  left: 100px;
+}
+
+/*from bar_chart*/
+	.widget {
+        display: inline-block;
+        border: 1px solid #AAA;
+        background: white;
+    }
+
+    svg {
+        shape-rendering: crispEdges;
+    }
+
+    .bar {
+        fill: #A18FDB;
+    }
+
+    .value {
+        font-size: 16px;
+        font-weight: 300;
+        fill: #333;
+    }
+
+    .label {
+        font-size: 18px;
+        fill: #333;
+    }
+
+    .axis {
+        font-size: 12px;
+    }
+    .axis path {
+        fill: none;
+    }
+    .axis .tick line {
+        stroke-width: 0;
+        stroke: rgba(0, 0, 0, 0.1);
+    }
+	#tag_bar {
+		height: 400px;
+		width: 300px;
+	}
+/*End fenghui */
 @media screen and (max-width: 46.0625em) {
 	
 }
