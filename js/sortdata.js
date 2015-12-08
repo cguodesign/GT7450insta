@@ -17,7 +17,11 @@ var eventDropsChart = d3.chart.eventDrops()
   .end(new Date(1446177600000))
   .width($("#center_panel").width())
   .hasBottomAxis(false)
+<<<<<<< HEAD
   .hasTopAxis(false)
+=======
+  .hasTopAxis(true)
+>>>>>>> master
   .eventClick(function(el) {
                     var url = d3.select(el);
                     //alert(url);
@@ -78,6 +82,7 @@ var addGamesDots = function(d){
                   data.forEach(function(obj) {
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
+<<<<<<< HEAD
 <<<<<<< HEAD:Project/js/sortdata.js
                     appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.standard_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location);
 =======
@@ -85,6 +90,9 @@ var addGamesDots = function(d){
                           appendData(obj.location.id, new Date(obj.created_time * 1000));
                       }
 >>>>>>> master:js/sortdata.js
+=======
+                    appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.standard_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location);
+>>>>>>> master
                   });
                 };
               setTimeout(appendData, 2000);
