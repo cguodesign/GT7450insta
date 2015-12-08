@@ -19,6 +19,12 @@
     }
 }
 
+h3 {
+	font-size: 12px;
+	height: 40px;
+	padding-bottom: 10px;
+}
+
 .y-axis g line {
     stroke: grey;
     fill: none;
@@ -29,6 +35,11 @@
     opacity: 0.1;
 }
 
+
+#photo_drawer{
+	width: 100%;
+	height: 300px;
+}
 
 /*For tree map*/
 .node {
@@ -131,7 +142,7 @@
 	font-size: 15px;
 	text-align: center;
 	margin: 0;
-	line-height: 60px;
+	line-height: 40px;
 	color: #999;
 	font-style: italic;
 }
@@ -170,12 +181,24 @@
 
  .leftcontent {
     position: absolute;
-    left:0%;
-    width:13%;
+    left:3%;
+    width:10%;
     top:0px;
     font-family: roboto;
     background-color: #fff;
   }
+
+  .leftcontent > h3 {
+  	text-align: center;
+  }
+
+  .dataleft {
+  	margin-top: 65px;
+  }
+
+ #center_panel {
+ 	margin-left:  -150px;
+ }
 
  .centercontent {
     position: absolute;
@@ -183,7 +206,7 @@
     width:63%;
     top:0px;
     font-family: roboto;
-    background-color: yellow;
+    background-color: #fff;
   }
 
 
@@ -193,7 +216,7 @@
     width:24%;
     top:0px;
     font-family: roboto;
-    background-color: green;
+    background-color: #fff;
   }
 
 .data{
