@@ -40,7 +40,9 @@ var addGamesDots = function(d){
                   data.forEach(function(obj) {
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
-                    appendData(obj.location.id, new Date(obj.created_time * 1000));
+                      if (Math.random() > 0.9) {
+                          appendData(obj.location.id, new Date(obj.created_time * 1000));
+                      }
                   });
                 };
               setTimeout(appendData, 2000);
