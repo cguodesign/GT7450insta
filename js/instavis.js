@@ -26,6 +26,7 @@ d3.json("../data/gameresults.json", function(error, data){
                 console.log("hey" + d.Location_ID);
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_treemap(data)});
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_barchart(data)});
+                my_Map(d.Location_ID);
                 /* Act on the event */
             });
                 /*
@@ -55,9 +56,9 @@ d3.json("../data/gameresults.json", function(error, data){
     			return (d.Score_home + " : " + d.Score_away);
     		})
             .on('click', function(d) {
-                console.log("hey" + d.Location_ID);
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_treemap(data)});
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_barchart(data)});
+                my_Map(d.Location_ID);
                 /* Act on the event */
             });
 
@@ -76,9 +77,9 @@ d3.json("../data/gameresults.json", function(error, data){
                 return (d.Logo + d.Home + ".gif");
             })
             .on('click', function(d) {
-                console.log("hey" + d.Location_ID);
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_treemap(data)});
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_barchart(data)});
+                my_Map(d.Location_ID);
                 /* Act on the event */
             });
 
@@ -97,11 +98,12 @@ d3.json("../data/gameresults.json", function(error, data){
                 return (d.Logo + d.Away + ".gif");
             })
             .on('click', function(d) {
-                console.log("hey" + d.Location_ID);
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_treemap(data)});
                 d3.json('http://7450_image_api.wuzizheng.com/location/'+d.Location_ID+'.json', function(data){draw_barchart(data)});
+                my_Map(d.Location_ID);
                 /* Act on the event */
             });
+
 /*
     var mainArea = d3.select("#maincontainer").append('svg')
         .attr("width",800)

@@ -14,13 +14,13 @@ var middle_placeholder = document.getElementById('center_panel');
 //var eventdrop_element = {name:"", dates:[]};
 
 var eventDropsChart = d3.chart.eventDrops()
-  .start(new Date(1444363200000))
-  .end(new Date(1446177600000))
+  .start(new Date(1444968000000))
+  .end(new Date(1445399940000))
   .width($("#center_panel").width())
   .hasBottomAxis(false)
   .hasTopAxis(true)
   .eventClick(function(el) {
-
+  					var description = "";
                     var timestamp = d3.select(el).data()[0];
                     var unixtime = Date.parse(timestamp)/1000;
                     var location = el.parentNode.firstChild.__data__.name;
@@ -34,10 +34,13 @@ var eventDropsChart = d3.chart.eventDrops()
                                 if (Date.parse(eventdrop_location[i]['dates'][j])/1000 == unixtime) {
                                     console.log(eventdrop_location[i]['url'][j]);
                                     var urlins = eventdrop_location[i]['url'][j];
+                                    description = eventdrop_location[i]['user'][j] + "said: " + eventdrop_location[i]['caption'][j];
                                     var image = document.createElement("IMG");
 									image.setAttribute('class', 'ins_photo');
 									image.src = eventdrop_location[i]['url'][j];
+									console.log(description);
 									$('#photo_drawer').html(image);
+									$('#caption_drawer').html(description);
                                 }
                             }
                         }
@@ -62,18 +65,10 @@ var eventDropsChart_after = d3.chart.eventDrops()
   .hasTopAxis(false);
   */
 
-var eventDropsChart_after = d3.chart.eventDrops()
-  .start(new Date(1445399940000))
-  .end(new Date(1446177600000))
-  .width($("#right_panel").width())
-  .hasBottomAxis(false)
-  .hasTopAxis(false);
-  */
-
 var Initial_Eventdrop_location = function(d){
   for (g = 0; g< d.length; g++){
     //console.log(eventdrop_location.length);
-    eventdrop_location[g] = { name:'', dates:[], url:[], filter:[], tags:[], likes:[], location:[]};
+    eventdrop_location[g] = { name:'', dates:[], url:[], filter:[], tags:[], likes:[], location:[],caption:[],user:[]};
     eventdrop_location[g].name = d[g];
     /*
     eventdrop_left[g] = { name:'', dates:[]};
@@ -86,14 +81,42 @@ var Initial_Eventdrop_location = function(d){
 }
 
 var sort_on_filter = function(dd){
-	for (f = 0 ; f < disabled.length; f++){
-		if (disabled[f] == dd.filter){
-			console.log("paired");
-			return false;
+	if (disabled.length > 0 && choosed_tags.length > 0){
+		if (disabled.indexOf(dd.filter) > -1){
+			if (dd.tags.length > 0){
+				for (t = 0; t < dd.tags.length; t++){
+					if (choosed_tags.indexOf(dd.tags[t]) > -1){
+						return true;
+					}else{
+						return false;
+					}
+				}
+			}else{
+				return false;
+			}
 		}else{
-			return true;
-		};
-	};
+			return false;
+		}
+	}else if(disabled.length > 0 && choosed_tags.length <= 0){
+		if (disabled.indexOf(dd.filter) > -1){
+			return true
+		}
+	}else if(disabled.length <= 0 && choosed_tags.length > 0){
+		if (dd.tags.length > 0){
+				for (t = 0; t < dd.tags.length; t++){
+					if (choosed_tags.indexOf(dd.tags[t]) > -1){
+						return true;
+					}else{
+						return false;
+					}
+				}
+		}else{
+			return false;
+		}
+	}else{
+		console.log("No filter has been applied")
+		return true; // equals to a pass
+	}
 }
 
 var addGamesDots = function(d){
@@ -117,7 +140,7 @@ var addGamesDots = function(d){
                     //console.log(obj);
                     if (Math.random() > 0.95){
                     	if (sort_on_filter(obj) == true){
-                    		appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location);
+                    		appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
                     	}
                 	}
                   });
@@ -157,7 +180,9 @@ var addGamesDots_new = function(gameid){
                   data.forEach(function(obj) {
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
-                      		appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location);
+                    	if (sort_on_filter(obj) == true){
+                      		appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                      	}
                     });
                 };
               setTimeout(appendData, 2000);
@@ -187,7 +212,7 @@ var appendDataRight = function (game_time, time) {
      }
 }
 */
-var appendData = function (game_time, time, url_hey, filter_hey, tag_hey, like_hey, location_key) {
+var appendData = function (game_time, time, url_hey, filter_hey, tag_hey, like_hey, location_key, caption_key, user_key) {
      for(i in eventdrop_location){
           if(eventdrop_location[i].name == game_time){
                eventdrop_location[i].dates.push(time);
@@ -197,6 +222,8 @@ var appendData = function (game_time, time, url_hey, filter_hey, tag_hey, like_h
                eventdrop_location[i].tags.push(tag_hey);
                eventdrop_location[i].likes.push(like_hey);
                eventdrop_location[i].location.push(location_key);
+               eventdrop_location[i].caption.push(caption_key);
+               eventdrop_location[i].user.push(user_key);
                break;
           }else{
             //console.log(eventdrop_location[i].name);
@@ -217,6 +244,11 @@ var refresh_main = function(){
 	console.log(eventdrop_location);
 	var element_center = d3.select(middle_placeholder).append('div').datum(eventdrop_location);
 	eventDropsChart(element_center);
+}
+
+var reset_filters = function(){
+	disabled = [];
+	choosed_tags = [];
 }
 /*
 var callTreeMap = function (data){

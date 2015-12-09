@@ -54,11 +54,33 @@ function draw_barchart(rawdata) {
         .enter()
         .append("g");
 
+    var previous_clicked_node_color = {};
+
     bar.attr("class", "bar")
         .attr("cx",0)
         .attr("transform", function(d, i) {
             return "translate(" + margin + "," + (i * (barHeight + barPadding) + barPadding) + ")";
+        })
+        .each(function(){
+            var selection = d3.select(this);
+            selection.on("click", function(d) {
+                if (!(choosed_tags.indexOf(d[0]) > -1)) {
+                    previous_clicked_node_color[d[0]] = selection.style("background");
+                    selection.style("background", "white");
+                    choosed_tags.push(d[0]);
+                }
+                else {
+                    selection.style("background", previous_clicked_node_color[d[0]]);
+                    var i = choosed_tags.indexOf(d[0]);
+                    if(i != -1) {
+                        choosed_tags.splice(i, 1);
+                    }
+                }
+                console.log(choosed_tags);
+            });
         });
+
+
 
     bar.append("text")
         .attr("class", "label")

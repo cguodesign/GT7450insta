@@ -233,7 +233,20 @@ h3 {
 	line-height: 1.3em;
 }
 
+#areachart{
+	height: 150px;
+}
 
+svg { border: 0px solid #dedede; }
+			.axis path,
+			.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+			}
+			.area {
+			fill: steelblue;
+			}
 
 .clearfix:before,
 .clearfix:after {
@@ -277,6 +290,11 @@ h3 {
   stroke: #fff;
   fill-opacity: .125;
   shape-rendering: crispEdges;
+}
+
+#caption_drawer {
+	font-size: 14px;
+
 }
 
 #slider {

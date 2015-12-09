@@ -220,17 +220,27 @@
                 <div class="rightcontent">
                     <div class="data">
                         <h3>Filters</h3>
-                        <div id = "photo_drawer"></div>
+                        <div class = "photo">
+                          <div id = "photo_drawer"></div>
+                          <div id = "caption_drawer"></div>
+                        </div>
+                        <h6>Hot Topics</h6>
                         <div id = "tag_bar"></div>
+                        <h6>Instagram Filter Trend</h6>
                         <div id = "filterbar"></div>
+                        <h6>How Many Like They Got</h6>
+                        <div id="areachart"></div>
                         <div><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="refresh_main()">
-                            Refresh
+                            Refresh Scatter View
+                          </button>
+                          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="reset_filters()">
+                            Reset Filters
                           </button></div>
                     </div>
                 </div>
         </div>
   </body>
-  
+  <script src="js/AreaChart.js"></script>
   <script src="js/treemap.js"></script>
   <script src="js/sortdata.js"></script>
   <script src="js/instavis.js"></script> 
