@@ -43,7 +43,7 @@ var eventDropsChart = d3.chart.eventDrops()
 									$('#photo_drawer').html(image);
 									$('#caption_drawer').html(description);
                                     // map
-                                    add_marker(1, 2, '3');
+                                    map_add_user(eventdrop_location[i]['user'][j]);
                                 }
                             }
                         }
@@ -187,7 +187,7 @@ var addGamesDots_new = function(gameid){
                     //console.log(obj);
                     	if (sort_on_filter(obj) == true){
                             if (obj.caption != null && obj.caption.text != null) {
-                                appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                                appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.id);
                             }
                       	}
                     });
