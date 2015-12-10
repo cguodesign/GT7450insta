@@ -17,7 +17,7 @@
     "Api_Starting_Time": 1444968000,
     "Api_Ending_Time": 1445054340,
     "Api_User_Starting2": 1445054340,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 2,
@@ -37,7 +37,7 @@
     "Api_Starting_Time": 1445194800,
     "Api_Ending_Time": 1445281200,
     "Api_User_Starting2": 1445281200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 3,
@@ -57,7 +57,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 4,
@@ -77,7 +77,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 5,
@@ -97,7 +97,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 6,
@@ -117,7 +117,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 7,
@@ -137,7 +137,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 8,
@@ -157,7 +157,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 9,
@@ -177,7 +177,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 10,
@@ -197,7 +197,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 11,
@@ -217,7 +217,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 12,
@@ -237,7 +237,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 13,
@@ -257,7 +257,7 @@
     "Api_Starting_Time": 1445140800,
     "Api_Ending_Time": 1445227200,
     "Api_User_Starting2": 1445227200,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   },
   {
     "Number": 14,
@@ -277,6 +277,6 @@
     "Api_Starting_Time": 1445281200,
     "Api_Ending_Time": 1445367600,
     "Api_User_Starting2": 1445367600,
-    "Logo": "../images/logos/logo_"
+    "Logo": "images/logos/logo_"
   }
 ]

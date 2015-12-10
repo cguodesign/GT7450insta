@@ -1,4 +1,4 @@
-d3.json("../data/gameresults.json", function(error, data){
+d3.json("data/gameresults.json", function(error, data){
     //use data here
 
     var gameresults = d3.select("#results").append("svg")
