@@ -42,6 +42,8 @@ var eventDropsChart = d3.chart.eventDrops()
 									console.log(description);
 									$('#photo_drawer').html(image);
 									$('#caption_drawer').html(description);
+                                    // map
+                                    add_marker(1, 2, '3');
                                 }
                             }
                         }
