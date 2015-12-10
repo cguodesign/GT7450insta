@@ -3,7 +3,7 @@
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    basePath: '../..',
+    basePath: '../../../../../../../',
     frameworks: ['jasmine'],
     browsers: ['PhantomJS'],
     plugins: [
@@ -12,7 +12,7 @@ module.exports = function(config) {
     ],
     files: [
       './node_modules/d3/d3.js',
-      './dist/eventDrops.js',
+      '../../dist/eventDrops.js',
       './test/karma/*'
     ]
   });
