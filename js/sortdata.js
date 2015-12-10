@@ -240,6 +240,7 @@ var appendData = function (game_time, time, url_hey, filter_hey, tag_hey, like_h
 }
 
 var refresh_main = function(){
+    initMap();
 	$("#center_panel").html("");
 
 	Initial_Eventdrop_location(all_games);
