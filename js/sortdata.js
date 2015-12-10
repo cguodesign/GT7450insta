@@ -139,8 +139,10 @@ var addGamesDots = function(d){
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
                     if (Math.random() > 0.95){
-                    	if (sort_on_filter(obj) == true){
-                    		appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                    	if (sort_on_filter(obj) == true) {
+                            if (obj.caption != null && obj.caption.text != null) {
+                                    appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                            }
                     	}
                 	}
                   });
@@ -181,7 +183,9 @@ var addGamesDots_new = function(gameid){
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
                     	if (sort_on_filter(obj) == true){
-                      		appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                            if (obj.caption != null && obj.caption.text != null) {
+                                appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                            }
                       	}
                     });
                 };
