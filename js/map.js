@@ -20,7 +20,7 @@ function add_marker(lat, lng, string_info) {
         map: map,
         title: 'Hello World!'
     });
-    marker.addListener('click', function() {
+    marker.addListener('mouseover', function() {
         infowindow.open(map, marker);
     });
     marker.setMap(map);
