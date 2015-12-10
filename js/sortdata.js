@@ -35,6 +35,7 @@ var eventDropsChart = d3.chart.eventDrops()
                                     console.log(eventdrop_location[i]['url'][j]);
                                     var urlins = eventdrop_location[i]['url'][j];
                                     description = eventdrop_location[i]['user'][j] + "said: " + eventdrop_location[i]['caption'][j];
+                                    console.log(eventdrop_location[i][''])
                                     var image = document.createElement("IMG");
 									image.setAttribute('class', 'ins_photo');
 									image.src = eventdrop_location[i]['url'][j];
@@ -141,7 +142,7 @@ var addGamesDots = function(d){
                     if (Math.random() > 0.95){
                     	if (sort_on_filter(obj) == true) {
                             if (obj.caption != null && obj.caption.text != null) {
-                                    appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                                    appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.id);
                             }
                     	}
                 	}
