@@ -35,12 +35,15 @@ var eventDropsChart = d3.chart.eventDrops()
                                     console.log(eventdrop_location[i]['url'][j]);
                                     var urlins = eventdrop_location[i]['url'][j];
                                     description = eventdrop_location[i]['user'][j] + "said: " + eventdrop_location[i]['caption'][j];
+                                    console.log(eventdrop_location[i][''])
                                     var image = document.createElement("IMG");
 									image.setAttribute('class', 'ins_photo');
 									image.src = eventdrop_location[i]['url'][j];
 									console.log(description);
 									$('#photo_drawer').html(image);
 									$('#caption_drawer').html(description);
+                                    // map
+                                    map_add_user(eventdrop_location[i]['user'][j]);
                                 }
                             }
                         }
@@ -139,8 +142,10 @@ var addGamesDots = function(d){
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
                     if (Math.random() > 0.95){
-                    	if (sort_on_filter(obj) == true){
-                    		appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                    	if (sort_on_filter(obj) == true) {
+                            if (obj.caption != null && obj.caption.text != null) {
+                                    appendData(obj.location.id, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.id);
+                            }
                     	}
                 	}
                   });
@@ -181,7 +186,9 @@ var addGamesDots_new = function(gameid){
                     //console.log(game_time_id + ' : ' + obj.created_time); 
                     //console.log(obj);
                     	if (sort_on_filter(obj) == true){
-                      		appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.full_name);
+                            if (obj.caption != null && obj.caption.text != null) {
+                                appendData(gameid, new Date(obj.created_time * 1000),obj.images.low_resolution.url, obj.filter, obj.tags, obj.likes.count, obj.location, obj.caption.text, obj.caption.from.id);
+                            }
                       	}
                     });
                 };
@@ -235,6 +242,7 @@ var appendData = function (game_time, time, url_hey, filter_hey, tag_hey, like_h
 }
 
 var refresh_main = function(){
+    initMap();
 	$("#center_panel").html("");
 
 	Initial_Eventdrop_location(all_games);
